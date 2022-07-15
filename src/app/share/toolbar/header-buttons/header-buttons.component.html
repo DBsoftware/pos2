@@ -1,0 +1,8 @@
+<div fxLayout="row" fxLayoutAlign="space-around center" class="w-100" style="padding: .5em;" fxLayoutGap="5px">
+        <app-fat-buttons
+        *ngFor="let item of labels"
+        [item]="item">
+        </app-fat-buttons>
+    <app-fat-buttons [item]="third">
+    </app-fat-buttons>
+</div>

@@ -1,0 +1,9 @@
+<div fxLayout="row"
+fxLayoutAlign="start center" >
+    <div
+        fxLayout="column"
+        fxLayoutAlign="start start" class="waiterName">
+        <div fxLayout="row wrap" fxLayoutAlign="start start" [innerHTML]="firstLine" ></div>
+        <div [innerHTML]="secondLine" fxHide.lt-md ></div>
+    </div>
+</div>

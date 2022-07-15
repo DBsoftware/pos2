@@ -1,0 +1,30 @@
+<mat-card>
+  <div fxLayout="row" fxLayoutAlign="center start" fxLayoutGap="gappx">
+    <h2>Chosen: {{date}}</h2>
+  </div>
+  <div class="w-100"
+  fxLayout="row"
+  fxLayoutAlign="space-evenly center" >
+        <app-pillbutton class="black mrg"
+        [payload]="payload"
+         [item]="item" *ngFor="let item of Buttons" >
+          </app-pillbutton>
+  </div>
+  <div fxLayout="row wrap" fxLayoutAlign="space-between center" style="margin: 1em">
+    <ng-container *ngFor="let item of data">
+      <crm-ui-input
+      *ngIf="item.cantHide || showReminder"
+       [fxFlex]="item.size"
+       [fxFlex.xs]="item.sizexs"
+       [_formService]="_formService"
+       [item]="item"></crm-ui-input>
+    </ng-container>
+       <!-- <div fxLayout="row" fxLayoutAlign="center start" class="w-100">
+        <crm-buttons
+        [payload]="{active:activatedRoute, date}"
+        *ngFor="let item of buttons; let i = index"
+        [buttonsIndex]="item"></crm-buttons>
+      </div> -->
+  </div>
+
+</mat-card>

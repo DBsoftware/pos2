@@ -1,0 +1,29 @@
+<div fxLayout="row" fxLayoutAlign="space-between start" >
+    <div class="store-name"  fxFlex
+    *ngIf="type !== CAROUSEL_TYPE.BUSINESS">
+    <div [ngSwitch]="moduleTypeId">
+        <div *ngSwitchCase="'83009'">
+            <h2 class="title" style="font-weight: bold; font-style: italic;">{{category}}</h2>
+        </div>
+        <div *ngSwitchCase="'83010'">
+            <h2 class="title" style="font-weight: bold; font-style: italic;">
+                {{product.title.length > (!!(imageUrl |async)? 73: 80) ? (( product.title | slice:0:(!!(imageUrl |async)?70:80))+ '...'): product.title }}
+            </h2>
+        </div>
+        <div *ngSwitchDefault>
+            <h2 class="title" style="font-weight: bold; font-style: italic;">{{storeName}}</h2>
+        </div>
+    </div>   
+    </div>
+<div *ngIf="(CoordsExist|async) && (!moduleTypeId || (!!moduleTypeId && (!moduleTypeId.includes('83010')&& !moduleTypeId.includes('83009'))))"
+    fxLayout="row" 
+    fxLayoutAlign="center center" 
+    fxFlex="35"
+    (click)="openGoogleMaps()" 
+    class="distance">
+    <mat-icon style="height: 17px;">
+        place
+    </mat-icon>
+    {{toNumber(this.product.Distance) < 100? (this.product.Distance | number:'1.1-1') + 'm': '> 100m' }}
+</div>
+</div>

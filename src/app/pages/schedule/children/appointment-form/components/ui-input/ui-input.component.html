@@ -1,0 +1,112 @@
+<ng-container *ngIf="item && !!_formService">
+    <form [formGroup]="_formService.FormGroup">
+        <ng-container *ngTemplateOutlet="field"></ng-container>
+        <ng-template #area>
+            <mat-form-field [ngClass]="{'bold': item.label.includes('*')}" style="width: 100%;" appearance="outline">
+                <mat-label>{{ item.label }}</mat-label>
+                <textarea
+                (keyup)="_formService.insertOnSelected()"
+                 matInput rows="7"
+                 [formControlName]="item.key">
+      </textarea>
+                <!-- <mat-error
+        *ngIf=" _formService.FormGroup.get(item.key).errors?.required"
+        >{{ item.label }} is required</mat-error> -->
+            </mat-form-field>
+        </ng-template>
+
+        <ng-template #select>
+            <mat-form-field [ngClass]="{'bold': item.label.includes('*')}"
+            style="width: 100%;" appearance="fill">
+                <mat-label>{{ item.label }}</mat-label>
+                <mat-select fxFlex="100" [formControlName]="item.key"
+                #selection
+                (selectionChange)="item.key.includes('seating_area_id')? _formService.onchange(selection.value):_formService.insertOnSelected(item.key)"
+                >
+                    <mat-option>Choose an option</mat-option>
+                    <mat-option
+                    *ngFor="let list of _formService.resolveList(item.key) | async"
+                     [value]="list[item.key].toString()">
+                        {{ list[_formService.resolveLabel(item.key)] }}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf=" _formService.FormGroup.get(item.key).errors?.required">{{ item.label }} is required</mat-error>
+            </mat-form-field>
+        </ng-template>
+
+        <ng-template #input>
+            <mat-form-field style="width: 100%;"
+            appearance="fill" [ngClass]="{'bold': item.label.includes('*')}">
+                <mat-label>{{ item.label }}</mat-label>
+                <input matInput
+                (keyup)="_formService.insertOnSelected()"
+                [formControlName]="item.key" />
+                <button (click)="_formService.send(item.key)" *ngIf="item.label.includes('mail')" mat-icon-button matSuffix  class="p-r">
+              <mat-icon>mail</mat-icon>
+              <small class="p-a position" >Send</small>
+              </button>
+                <mat-error *ngIf="_formService.FormGroup.get(item.key).errors?.required">{{ item.label }} is required</mat-error>
+                <mat-error *ngIf="_formService.FormGroup.get(item.key).errors?.invalidEmail">{{ item.label }} has a not valid email address</mat-error>
+            </mat-form-field>
+        </ng-template>
+
+        <ng-template #phone>
+             <mat-form-field [ngClass]="{'bold': item.label.includes('*')}" style="width: 100%;" appearance="fill">
+                <mat-label>{{ item.label }}</mat-label>
+                <!-- <span matPrefix>+1 &nbsp;</span> -->
+                <input matInput [formControlName]="item.key"
+                [validation]="false"
+                prefix="+1"
+                [mask]="'(000) 000-0000'+(!item.key.includes('mobile')? '@0000': '')" (keyup)="_formService.insertOnSelected()" />
+                <button mat-icon-button matSuffix (click)="_formService.call(item.key)" class="p-r">
+                <mat-icon>phone</mat-icon>
+                <small class="p-a position" >Call</small>
+               </button>
+                <mat-hint>e.g. 999 999 99 99 {{!item.key.includes('mobile')? '@ext': ''}}</mat-hint>
+            </mat-form-field>
+        </ng-template>
+        <ng-template #time>
+          <mat-form-field style="width: 100%;" appearance="fill" [ngClass]="{'bold': item.label.includes('*')}">
+            <mat-label>{{ item.label }}</mat-label>
+            <input matInput [ngxTimepicker]="picker"
+            [min]="setmin()"
+            [formControlName]="item.key" />
+            <ngx-material-timepicker (closed)="_formService.insertOnSelected()"
+             #picker></ngx-material-timepicker>
+            <button  mat-icon-button matSuffix  class="p-r">
+              <mat-icon>query_builder</mat-icon>
+              <!-- <small class="p-a position" >set</small> -->
+            </button>
+            <mat-error *ngIf=" _formService.FormGroup.get(item.key).errors?.required">{{ item.label }} is required</mat-error>
+        </mat-form-field>
+        </ng-template>
+        <ng-template #radio>
+          <div fxLayout="column" fxLayoutAlign="center center" style="width: 100%; margin: 2em 0;">
+
+             <mat-checkbox
+             class="example-margin" [formControlName]="item.key"
+                    (change)="_formService.insertOnSelected()">
+                    <h4 style="margin-bottom: 0;" >{{ item.label }}</h4>
+            </mat-checkbox>
+             <!-- <mat-checkbox
+            [color]="'warn'"
+            [labelPosition]="'before'"
+             class="example-margin" [formControlName]="item.key"
+                    (change)="_formService.insertOnSelected()">
+                    <h4 style="margin-bottom: 0;" >{{ item.label }}</h4>
+            </mat-checkbox> -->
+          </div>
+        </ng-template>
+        <ng-template #button>
+          <div fxLayout="row" fxLayoutAlign="center center"
+          style="width: 100%; margin: 2em 0;">
+            <app-pillbutton
+            fxFlex="30"
+            [item]="item" >
+            </app-pillbutton>
+          </div>
+        </ng-template>
+
+
+    </form>
+</ng-container>

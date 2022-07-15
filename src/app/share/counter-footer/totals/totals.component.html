@@ -1,0 +1,14 @@
+
+<div
+fxLayout="column"
+fxLayoutAlign="center stretch" style="margin-top: 5px;">
+<span class="bold">Invoice Totals</span>
+    <div class="row"
+        style="margin: .25em 0;"
+        *ngFor="let item of totalTypes"
+        fxLayout="row"
+        fxLayoutAlign="start start" >
+            <div class="w-100 first" FxFlex="50">{{item.label}}</div>
+            <div class="w-100 second" FxFlex="50">{{setData(item.label) | number: '1.2-2'}}</div>
+    </div>
+</div>

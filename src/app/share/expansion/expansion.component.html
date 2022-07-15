@@ -1,0 +1,15 @@
+<mat-accordion>
+    <mat-expansion-panel class="soft-border" [expanded]="true" >
+        <mat-expansion-panel-header class="cat-first-level-name" [collapsedHeight]="'1.5em'"
+                                    [expandedHeight]="'1.5em'">
+            <mat-panel-title fxLayout="row" fxLayoutAlign="space-between start">
+                <span>{{ items.category_Name  }}</span>
+                <span  class="blue-highlight view-all"
+                    (click)="navigateViewAll($event)">View All</span>
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+            <app-products-carousel  [type]="CAROUSEL_TYPE" [category_id]="items.category_id"
+                                    [products]="items.PC"></app-products-carousel>
+    </mat-expansion-panel>
+</mat-accordion>
+

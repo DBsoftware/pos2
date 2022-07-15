@@ -1,0 +1,16 @@
+.active{
+    background-color: lightskyblue;
+}
+
+.mat-raised-button {
+  @media (max-width: 426px) {
+    min-width: 0px;
+    line-height: 2em;
+    padding: 0 8px;
+  }
+  @media (max-width: 326px) {
+    min-width: 26px;
+    line-height: 2em;
+    padding: 0px 4px;
+  }
+}

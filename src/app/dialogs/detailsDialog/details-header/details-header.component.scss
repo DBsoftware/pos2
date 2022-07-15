@@ -1,0 +1,15 @@
+
+h3{
+    font-weight: 700;
+    margin: 0;
+}
+
+@media (max-width: 425px) {
+  .pd-top{
+    padding-top: 5px;
+  }
+
+  h3{
+    font-size: 14px;
+}
+}

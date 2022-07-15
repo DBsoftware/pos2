@@ -1,0 +1,11 @@
+<button (click)="onClick()"
+    class="pill-buttons w-100 p-r"
+    [class]="'bc-'+item.color"
+    fxLayout="row" fxLayoutAlign="center center"
+    [disabled]="disabled"
+    mat-button>
+    {{label}}
+    <mat-icon *ngIf="!!item.icon" class="size-large p-r" style="top: 2px;" >
+        {{item.icon}}
+    </mat-icon>
+</button>

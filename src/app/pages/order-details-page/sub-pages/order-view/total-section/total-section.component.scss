@@ -1,0 +1,14 @@
+.areas{
+    label{
+        font-weight: 700; font-size: smaller;
+    }
+}
+
+.bold{
+    font-weight: 800;
+}
+
+::ng-deep .printButton button{
+  height: 22px;
+  margin-top: 5px;
+}

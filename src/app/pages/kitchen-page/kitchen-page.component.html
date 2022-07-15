@@ -1,0 +1,33 @@
+<br>
+<div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="space-around">
+    <div fxFlex="48" class="h-100">
+        <app-table-top-bar-one [filterButtons]="filterButtons" [isCounter]="false" [messageButton]="null"></app-table-top-bar-one>
+        <ng-container *ngIf="isList | async; else elseTemplate">
+            <div class="w-100 soft-border" style=" overflow-y: scroll; height: 35em; padding: .5em 0;">
+                <app-section-space [title]="'Showcase'" [height]="'11.5em'"  >
+                    <div class="w-100">
+                        <app-products-carousel  [type]="'pc'"
+                        [products]="showcase | async"></app-products-carousel>
+                    </div>
+                </app-section-space>
+                <app-section-space [title]="'Menu'" [height]="'11.5em'" class="w-100" >
+                    <app-rows-expandables class="w-100"></app-rows-expandables>
+                </app-section-space>
+            </div>
+        </ng-container>
+        <ng-template #elseTemplate>
+            <app-table [displayedColumns]="columnsTableOne" [hasSelection]="'alert'" [dataSourceCarrefour]="TableTypeORDERS" ></app-table>
+        </ng-template>
+    </div>
+    <div fxFlex="48" >
+        <app-flatcard>
+            <app-long-header  [longHeaderData]="false" [buttonsrow]="buttonsRow" [isCounter]="false"></app-long-header>
+            <app-table [displayedColumns]="columnsTableTwoKitchen" [hasSelection]="'Done'" [dataSourceCarrefour]="TableTypeITEMS" ></app-table>
+            <app-counter-footer [isCounter]="false" ></app-counter-footer>
+        </app-flatcard>
+    </div>
+</div>
+
+
+
+

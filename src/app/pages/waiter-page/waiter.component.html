@@ -1,0 +1,16 @@
+
+<app-section-space [title]="'Current Ads'" class="w-100"  *ngIf="!!(banner | async) && !!(banner | async).length" >
+        <div class="w-100"  >
+                <app-ad-carousel [slides]="(banner | async)" ></app-ad-carousel>
+        </div>
+</app-section-space>
+<app-section-space [title]="'Showcase'" [height]="'11.5em'"  >
+        <div class="w-100">
+                <app-products-carousel  [type]="'pc'"
+                [products]="showcase | async"></app-products-carousel>
+        </div>
+</app-section-space>
+<app-section-space [title]="'Orders'" class="w-100" [height]="'55vh'" [additionalClass]="'scroll-y'" >
+        <app-order-card *ngFor="let order of (cards |async)" [order]="order"class="w-100"  ></app-order-card>
+</app-section-space>
+

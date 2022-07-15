@@ -1,0 +1,269 @@
+// @media (max-width: 1400px) {
+  * {
+    box-sizing: border-box;
+  }
+
+  body{
+    padding: 0;
+    margin: 0;
+    background: #e6e6e6;
+  }
+
+  a{
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button{
+    border-radius: 5px;
+    border: none;
+    color: #fff;
+  }
+
+  input{
+    border: 1px solid #a0a0a0;
+    border-radius: 3px;
+    box-shadow: none;
+    min-height: 25px;
+  }
+
+  .flex{
+    display: flex;
+  }
+
+  // header{
+  //   position: fixed;
+  //   width: 100%;
+  //   background: #fff;
+  //   height: 141px;
+  //   top: 0;
+  // }
+
+  section{
+    margin-top: 141px;
+  }
+
+  .topBar{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0 20px;
+    background: #01528c;
+    height: 52px;
+    @media (max-width: 375px) {
+      padding: 0 12px;
+    }
+  }
+
+  .menu{
+    display: flex;
+  }
+
+  .imgMenu{
+    max-width:24px;
+  }
+
+  .logo{
+    width: 30%;
+    max-width: 200px;
+    height: fit-content;
+  }
+
+  .rightTextHeader{
+    color: #f78f04;
+  }
+
+  .headerButtons{
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 5px;
+  }
+
+  .headerButton{
+    background-color: #013c66;
+    // max-width: 95px;
+    // width: 24%;
+    // height: 34px;
+  }
+
+  .headerButton:hover, .headerButton:active {
+    background: #a2c7f8;
+  }
+
+  .searchSection{
+    background-color: #013c66;
+    padding: .5em 5px;
+    // margin-top: .5em;
+  }
+
+  .searchIcon{
+    width: 28px;
+    margin-right: 10px;
+  }
+
+  .searchInput{
+    height: 100%;
+    padding: 5px;
+    margin-right: 10px;
+    max-width: 168px;
+    width: 100%;
+    margin-top:0px !important;
+  }
+
+  .searchButton{
+    background: #b547fe;
+  }
+
+  .newOrderButton{
+    background: #318c40;
+  }
+
+  .titleSection{
+    background: #318c40;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 33px;
+    padding: 0 15px;
+    margin-top: 5px;
+  }
+
+  .firstTitle{
+    font-size: 18px;
+  }
+
+  .secondTitle{
+    font-size: 15px;
+  }
+
+  .responsiveImg{
+    width: auto;
+    height: 100%;
+  }
+
+  .content{
+    padding: 8px;
+    display: flex;
+  }
+
+  .contentTitle{
+    font-weight: bold;
+    font-size: 17px;
+  }
+
+  .contentShowcase{
+    padding: 8px;
+    display: flex;
+    max-width: fit-content;
+    overflow-x: auto;
+  }
+
+  .categorySection{
+    display: grid;
+    grid-template-columns: 140px 141px;
+    grid-template-rows: 38px 74px 25px ;
+    grid-gap: 5px;
+    border: 1px solid #cacaca;
+    padding: 5px;
+    margin-right: 7px;
+    background: #fff;
+  }
+
+  .first{
+    grid-column: 1;
+    grid-row: 1;
+    font-weight: bold;
+  }
+
+  .second{
+    grid-column: 2;
+    grid-row: 1;
+    font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  .third{
+    border: 1px solid #d4d4d4;
+  }
+
+  .fourth{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    padding-left: 3px;
+  }
+
+  .sixth{
+    font-weight: bold;
+    text-align: right;
+  }
+
+  .paddingAlert{
+    padding: 0 8px;
+    height: calc(68vh - 200px);
+    overflow-y: auto;
+  }
+
+  .contentAlert{
+    border:1px solid #000;
+    margin-top: 6px;
+    background-color: #fff;
+  }
+
+  .alertHeader{
+    justify-content: space-between;
+    display: flex;
+    padding: 0 8px;
+    align-items: center;
+    height: 29px;
+  }
+
+  .alertTitle{
+    background: red;
+    color: #fff;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 31px;
+  }
+
+  .textAlert{
+    resize: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    float: left;
+    width: 96%;
+    height: 100px;
+    margin: 5px 0 4px 10px;
+  }
+
+  .footerAlert{
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    height: 29px;
+    padding: 0 8px;
+    margin-bottom: 4px;
+    clear: both;
+  }
+
+  .btnClearAlert{
+    background: #ff9100;
+    color: #fff;
+    max-width: 91px;
+    width: 82px;
+    height: 27px;
+  }
+// }
+
+
+

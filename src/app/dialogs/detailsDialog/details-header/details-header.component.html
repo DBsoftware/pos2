@@ -1,0 +1,9 @@
+<div *ngIf="(content|async)" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" class="w-100 px-1 h-100" style="min-height: 45px;" >
+    <div fxLayout.xs="row" fxFlex="45" fxFlex.xs="100">
+      <h3 class="pd-top" >{{(content|async).title}}</h3>
+    </div>
+    <div fxLayout="row" fxFlex="55" fxFlex.xs="100" fxLayoutAlign="space-between center" class="w-100" >
+      <app-rating-stars [classes]="'half-line-height'" [product]="(content|async)"  [position]="'start end'"></app-rating-stars>
+      <h3>${{(content|async).regularPrice}}</h3>
+    </div>
+</div>

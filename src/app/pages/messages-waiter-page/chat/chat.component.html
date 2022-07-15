@@ -1,0 +1,73 @@
+<div fxLayout="row"
+*ngIf="isWaiter|async"
+fxLayoutAlign="start center"
+ style="padding: 1em;" class="w-100">
+  <app-pillbutton fxFlex="14%"
+    (click)="back()"
+   [item]="{label:'go back', color:'hard-green white'}"
+   ></app-pillbutton>
+  <!-- <div class="w-100"
+   fxLayout="row"
+   fxLayoutAlign="start center"  >
+    <h2 fxFlexOffset="30" >Messages</h2>
+  </div> -->
+</div>
+<div  *ngIf="!(chat|async) || (!!(chat|async) && !(chat|async)[0])"  fxLayout="row" fxLayoutAlign="center" class="w-100 header-chat" style="padding: 11px 0;">
+  <h5>Please make a selection</h5>
+</div>
+<div *ngIf="(!!(chat|async) && !!(chat|async)[0])" fxLayout="row" fxLayoutAlign="end center" class="w-100 header-chat" style="padding: .5em .5em 0;">
+    <h4 style="font-weight: bold;">{{(chat|async)[0]?.sender_name}}</h4>
+</div>
+<div *ngIf="(!!(chat|async) && !!(chat|async)[0])" fxLayout="row" fxLayoutAlign="start center" class="w-100 header-chat" style="padding: 0 .5em .5em;">
+    <h4   >Re.{{(chat|async)[0]?.subject}}</h4>
+</div>
+<div class="chat-thread borderChat" #chatContainer>
+    <ng-container *ngIf="false; else elseTemplateChatti">
+      <div  fxLayout="row" fxLayoutAlign="center">
+        <h3>Please make a chat selection</h3>
+      </div>
+    </ng-container>
+    <ng-template #elseTemplateChatti>
+      <div  class="message-row" *ngFor="let item of chat | async" [ngClass]="{'user': isUser(item), 'merchant': !isUser(item)}">
+        <div fxLayout="row wrap" fxLayoutAlign="start" fxLayoutGap="5px" class="message-title">
+          <span  class="strong">{{item.sender_name}}</span>
+          <span>{{item.date}}</span>
+        </div>
+        <div class="message-content message other-message float-right">
+          <ng-container *ngIf="isGif(item.content); else elseTemplate">
+            <img  class="attached" [src]="item.content" alt="">
+          </ng-container>
+          <ng-template #elseTemplate>
+            {{item.content}}
+          </ng-template>
+
+          <div fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="2%" >
+            <div  [fxFlex]="30" fxLayout="row" fxLayoutAlign="center"
+            style="width: 100%;"
+            *ngFor="let image of item.MI" >
+              <img width="50%"
+              (click)="open(image.image_name)"
+               class="attached"  [src]="imageUrlBuilder(image.image_name)"
+                alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+  <div style="margin: 0 2px; padding: 0;height: 7em;" >
+    <textarea
+      [(ngModel)]="message.content"
+      [readonly]="!(chat|async) || (!!(chat|async) && !(chat|async)[0])"
+      class="w-100 h-100 textAreaChat"
+      placeholder="Type your message" ></textarea>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="end start" class="chatFooter" style="padding: .5em;">
+    <app-pillbutton
+      [disabled]="(!(chat|async) || (!!(chat|async) && !(chat|async)[0]) )|| message.content.length < 1"
+      [payload]="message"
+      [item]="{label:'Send', color:'hard-green white'}"
+      (out)="sendResponse()"
+       >
+      </app-pillbutton>
+  </div>

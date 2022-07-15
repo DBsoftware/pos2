@@ -1,0 +1,20 @@
+    <ng-container *ngIf="!!(ordernumber|async); else elseTemplate">
+        <div 
+            fxLayout="row" 
+            [fxLayoutAlign]="isCounter? 'space-between center': 'end center'" fxLayoutGap="10px"
+            class="w-100  my-5">
+            <app-pillbutton [item]="item" *ngFor="let item of buttonsRow"  >
+            </app-pillbutton>
+        </div>
+    </ng-container>
+    <ng-template #elseTemplate>
+        <div 
+            fxLayout="row" 
+            [fxLayoutAlign]="isCounter? 'space-between center': 'end center'" fxLayoutGap="10px"
+            class="w-100  my-5">
+            <app-pillbutton [item]="onlyCustomerHistory"  >
+            </app-pillbutton>
+        </div>
+    </ng-template>
+    
+

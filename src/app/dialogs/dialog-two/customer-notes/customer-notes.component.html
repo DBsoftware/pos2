@@ -1,0 +1,16 @@
+<h5 mat-dialog-title>
+    <ng-content></ng-content>
+</h5>
+<div style="padding: .5em 2em;" >
+    <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="5em">
+        <small>Date</small>
+        <small>Time</small>
+        <small>User</small>
+        <small>Comment</small>
+    </div>
+    <textarea rows="3" class="w-100"  [innerHtml]="notas|async" readonly ></textarea>
+    <div fxLayout="row" fxLayoutAlign="start" class="w-100" fxLayoutGap="5em">
+        <label class="boldLabel" for="">comment</label>
+        <input #comment (keyup)="enterComment(comment.value)" class="w-100" />
+    </div>
+</div>

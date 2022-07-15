@@ -1,0 +1,34 @@
+<div class="pc w-100 h-100"  #container >
+    <div *ngIf="products" class="swiper-container" [swiper]="config" >
+        <div class="swiper-wrapper centerIt" >
+            <div *ngFor="let product of products; let i = index"
+                class="swiper-slide width" >
+                <app-item-card 
+                [product]="product"
+                [position]="i"
+                [row]="{PC:products}"
+                [total]="products.length - 1"
+                [category_id]="category_id ? category_id: product.category_id" 
+                [moduleTypeId]="moduleTypeId"
+                [type]="type" ></app-item-card>
+            </div>
+            <!-- <div class="swiper-slide" *ngIf="products.length >= 9" >
+                <app-item-card (more)="goMore()" [product]="showMore()"  [isLast]="true"></app-item-card>
+            </div> -->
+        </div>
+        <button color="primary" mat-mini-fab class="swiper-button-prev swipe-arrow" 
+        [ngStyle]="{opacity: (products.length > 2 && windowSize > 960)
+            ||((windowSize < 961 && windowSize > 425) && products.length > 2)
+            || ((windowSize < 426 && windowSize > 375) && products.length > 1)
+            || (windowSize < 376 && products.length > 1)? .85 : 0}">
+            <mat-icon>keyboard_arrow_left</mat-icon>
+        </button>
+        <button color="primary" mat-mini-fab [ngStyle]="{opacity: (products.length >2 && windowSize > 960)
+        ||((windowSize < 961 && windowSize > 425) && products.length > 2)
+        || ((windowSize < 426 && windowSize > 375) && products.length > 1)
+        || (windowSize < 376 && products.length > 1)? .85 : 0}"
+                class="swiper-button-next swipe-arrow">
+            <mat-icon>keyboard_arrow_right</mat-icon>
+        </button>
+    </div>
+</div>

@@ -1,0 +1,131 @@
+
+<div id="print-section">
+    <div id="POS">
+
+        <div id="mid">
+        <div class="info">
+            <h2 style="margin-bottom: 0;" align="center" >{{(user | async)?.companyName}}</h2>
+            <h5 align="center" [innerHtml]="(user | async)?.address" ></h5>
+            <br>
+            <p>
+              <span >Order Number: {{(orderSelected | async)?.order_number}}</span><br>
+                <span >Server: {{(user | async)?.fullName}}</span><br>
+                <span *ngIf="!!(orderSelected | async).fullName && (orderSelected | async)?.fullName.length > 0" >Client : {{(orderSelected | async)?.fullName}}</span><br>
+                <span *ngIf="!!(orderSelected | async).customer_phone_number && (orderSelected | async)?.customer_phone_number.length > 0 && !(orderSelected | async)?.isDineIn" >Phone : {{(orderSelected | async)?.customer_phone_number}}</span><br>
+                <span *ngIf="!!(orderSelected | async).fullAddress && (orderSelected | async)?.fullAddress.length > 0 && (orderSelected | async)?.isDelivery " [innerHtml]="(orderSelected | async)?.fullAddress " ></span><br>
+            </p>
+          </div>
+        </div><!--End Invoice Mid-->
+
+        <div id="bot">
+
+                        <div id="table">
+                            <table>
+                                <tr class="tabletitle">
+                                    <td class="item"><h6>Item</h6></td>
+                                    <td class="Hours"><h6>Qty</h6></td>
+                                    <td class="Rate"><h6>Sub Total</h6></td>
+                                    <td class="Rate"><h6>&nbsp;&nbsp;</h6></td>
+                                </tr>
+
+                                <tr class="service" *ngFor="let item of (orderSelected | async)?.items">
+                                    <td class="tableitem">
+
+                                        <div class="itemtext" fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="0px">
+                                            <span style="margin-bottom: -5px;" >{{item.title}}</span>
+                                            <div fxLayout="column" fxLayoutAlign="start end"
+                                            style="font-size: .9em; width: 75%;" [innerHtml]="item?.optionsReceipt" ></div>
+                                        </div>
+                                    </td>
+                                    <td class="tableitem"><p class="itemtext">{{item.product_qty}}</p></td>
+                                    <td class="tableitem"><p class="itemtext">{{item.totalPerItem}}</p></td>
+                                    <td class="tableitem"><p class="itemtext">&nbsp;&nbsp;</p></td>
+                                </tr>
+                                <tr class="tabletitle" *ngIf="!!(orderSelected | async).tax" >
+                                    <td></td>
+                                    <td class="Rate"><h6 style="font-weight: 800;" >Tax</h6></td>
+                                    <td class="payment"><h6>${{(orderSelected | async)?.tax}}</h6></td>
+                                    <td class="tableitem"><p class="itemtext">&nbsp;&nbsp;</p></td>
+                                </tr>
+
+                                <tr class="tabletitle" *ngIf="!!(orderSelected | async).totalNoTip" >
+                                  <td></td>
+                                  <td class="Rate"><h6 style="font-weight: 800;" >Subtotal</h6></td>
+                                  <td class="payment"><h6 style="font-weight: 600;" >${{(orderSelected | async)?.totalNoTip |number:'1.2-2'}}</h6></td>
+                                  <td class="tableitem"><p class="itemtext">&nbsp;&nbsp;</p></td>
+                              </tr>
+                                <tr class="tabletitle" >
+                                    <td></td>
+                                    <td class="Rate"><h6 style="font-weight: 800;" >Tip</h6></td>
+                                    <td class="payment"><h6>-------------------</h6></td>
+                                    <!-- <td class="payment"><h6>${{(orderSelected | async)?.order_tip}}</h6></td> -->
+                                    <td class="tableitem"><p class="itemtext">&nbsp;&nbsp;</p></td>
+                                </tr>
+
+                                <tr class="tabletitle" *ngIf="!!(orderSelected | async).orderTotal" >
+                                    <td></td>
+                                    <td class="Rate"><h6 style="font-weight: 800;" >Total</h6></td>
+                                    <!-- <td class="payment"><h6>${{(orderSelected | async)?.orderTotal}}</h6></td> -->
+                                    <td class="payment"><h6>-------------------</h6></td>
+                                    <td class="tableitem"><p class="itemtext">&nbsp;&nbsp;</p></td>
+                                </tr>
+
+                            </table>
+                        </div><!--End Table-->
+                        <br>
+                        <div fxLayout="column" fxLayoutAlign="start center" class="w-100">
+                          <span>-------------------------</span>
+                          <span *ngIf="!!(orderSelected | async).fullName && (orderSelected | async)?.fullName.length > 0" >{{(orderSelected | async)?.fullName}}</span><br>
+                        </div>
+                        <div id="legalcopy">
+                            <p class="legal" align="center">
+                              I agree to pay the above amount per the cardholder and/or merchant agreement
+                            </p>
+                        </div>
+                        <br>
+                        <table>
+                          <tr fxLayout="row" fxLayoutAlign="space-between start" >
+                            <td><span>Tip</span></td>
+                            <td><span>Amount</span></td>
+                            <td><span>Total</span></td>
+                          </tr>
+                          <tr fxLayout="row" *ngFor="let item of [5,10,15,20]"
+                          fxLayoutAlign="space-between start" >
+                            <td><span>{{item}}%</span></td>
+                            <td><span>${{calculateTip(item)|number:'1.2-2'}}</span></td>
+                            <td><span>${{calculateTipTotal(item) |number:'1.2-2' }}</span></td>
+                          </tr>
+                        </table>
+                        <br>
+                        <p>
+                            <span >Invoice Date: {{date}}</span><br>
+                            <ng-container *ngIf="!!(orderSelected | async).order_cash_flag" >
+                              <span  >Payment: {{(orderSelected | async).order_cash_flag.includes('false')? 'Credit Card': 'Cash'}} </span><br>
+                            </ng-container>
+                            <ng-container *ngIf="!!(orderSelected | async).credit_card_type_id" >
+                              <span  >Card Type: *******{{(orderSelected | async)?.credit_card_type_id}}</span><br>
+                            </ng-container>
+                            <ng-container *ngIf="!!(orderSelected | async).order_last4" >
+                              <span  >Card Number: *******{{(orderSelected | async)?.order_last4}}</span><br>
+                            </ng-container>
+                            <ng-container *ngIf="!!(orderSelected | async).order_approval ">
+                              <span  >Approval Number: {{(orderSelected | async).order_approval}}</span><br>
+                            </ng-container>
+                        </p>
+                        <div id="legalcopy">
+                            <p class="legal"><span>Thank you for visiting, come again!</span>
+                                 <!-- Payment is expected within 31 days; please process this invoice within that time. There will be a 5% interest charge per month on late invoices.  -->
+                            </p>
+                        </div>
+
+                    </div><!--End InvoiceBot-->
+      </div><!--End Invoice-->
+  </div>
+  <button
+    class="pill-buttons w-100 p-r bc-hard-green white w-100"
+    [useExistingCss]="true"
+    printSectionId="print-section" ngxPrint
+    fxLayout="row" fxLayoutAlign="center center"
+    mat-button>
+    Print
+</button>

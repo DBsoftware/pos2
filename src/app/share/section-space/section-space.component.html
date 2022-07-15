@@ -1,0 +1,8 @@
+<div fxLayout="column" fxLayoutAlign="start" class="container-space" >
+    <div fxLayout="row" fxLayoutAlign="start start" class="white solid-bc-green" style="padding: .5em 1em; font-weight: 700;" >
+        {{title}}
+    </div>
+    <div class="space" fxLayout="column" fxLayoutAlign="start start" [class]="additionalClass" [ngStyle]="{'height': height}"  >
+        <ng-content  ></ng-content>
+    </div>
+</div>

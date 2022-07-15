@@ -1,0 +1,86 @@
+<div  *ngIf="!notfound" class="p-r w-100" style="height: 60px;" >
+    <mat-toolbar *ngIf="!(isWaiter|async); else IsWaiter " style="position: fixed; z-index: 999;"
+        fxLayout="row"
+        fxLayoutAlign="space-between center"
+        color="primary" >
+            <app-logo></app-logo>
+                <div fxShow fxHide.gt-sm >
+                    <app-duo-info *ngFor="let item of staticData; let f = first" [fxHide.lt-md]="!f"
+                        [firstLine]="((name | async) && f) || !f ? '\<div>'+item.firstLine + '\<div> ' + (f ? '\<div>'+(name | async) + '\<div>': (time|async) ): ''"
+                        [secondLine]="((name | async) && f) || !f ? item.secondLine + ' '+ (f? (merchant | async): date): ''" >
+                    </app-duo-info>
+                </div>
+
+                <app-duo-info *ngFor="let item of staticData; let f = first" fxHide fxShow.gt-sm
+                    [firstLine]="((name | async) && f) || !f ? item.firstLine + ' ' + (f ? (name | async): (time|async) ): ''"
+                    [secondLine]="((name | async) && f) || !f ? item.secondLine + ' '+ (f? (merchant | async): date): ''" >
+                </app-duo-info>
+
+            <ng-container *ngIf="!(name | async) ; else elseTemplate">
+                <div class="m-demi5-r"
+                    [routerLink]="['/login']"
+                    fxLayout="column"
+                    class="clickable"
+                    fxLayoutAlign="center end">
+                        <span class="size-medium" >
+                            login
+                        </span>
+                </div>
+            </ng-container>
+            <ng-template #elseTemplate>
+                <div class="m-demi5-r"
+                    [routerLink]="['/login']"
+                    fxLayout="column"
+                    class="clickable"
+                    (click)="logOut()"
+                    fxLayoutAlign="center center">
+                        <span class="size-small" fxHide fxShow.gt-sm >
+                            sign-out
+                        </span>
+                        <mat-icon class="white" fxHide fxShow.lt-md >exit_to_app</mat-icon>
+                </div>
+            </ng-template>
+
+    </mat-toolbar>
+    <ng-template #IsWaiter>
+      <nav  style="position: fixed; z-index: 999;" class="w-100">
+          <div class="topBar">
+              <!-- <div class="menu">
+                  <img class="imgMenu" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnN2Z2pzPSJodHRwOi8vc3ZnanMuY29tL3N2Z2pzIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeD0iMCIgeT0iMCIgdmlld0JveD0iMCAwIDM4NCAzODQiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTIiIHhtbDpzcGFjZT0icHJlc2VydmUiIGNsYXNzPSIiPjxnPjxwYXRoIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZD0ibTM2OCAxNTQuNjY3OTY5aC0zNTJjLTguODMyMDMxIDAtMTYtNy4xNjc5NjktMTYtMTZzNy4xNjc5NjktMTYgMTYtMTZoMzUyYzguODMyMDMxIDAgMTYgNy4xNjc5NjkgMTYgMTZzLTcuMTY3OTY5IDE2LTE2IDE2em0wIDAiIGZpbGw9IiNmZmZmZmYiIGRhdGEtb3JpZ2luYWw9IiMwMDAwMDAiIHN0eWxlPSIiIGNsYXNzPSIiPjwvcGF0aD48cGF0aCB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGQ9Im0zNjggMzJoLTM1MmMtOC44MzIwMzEgMC0xNi03LjE2Nzk2OS0xNi0xNnM3LjE2Nzk2OS0xNiAxNi0xNmgzNTJjOC44MzIwMzEgMCAxNiA3LjE2Nzk2OSAxNiAxNnMtNy4xNjc5NjkgMTYtMTYgMTZ6bTAgMCIgZmlsbD0iI2ZmZmZmZiIgZGF0YS1vcmlnaW5hbD0iIzAwMDAwMCIgc3R5bGU9IiIgY2xhc3M9IiI+PC9wYXRoPjxwYXRoIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZD0ibTM2OCAyNzcuMzMyMDMxaC0zNTJjLTguODMyMDMxIDAtMTYtNy4xNjc5NjktMTYtMTZzNy4xNjc5NjktMTYgMTYtMTZoMzUyYzguODMyMDMxIDAgMTYgNy4xNjc5NjkgMTYgMTZzLTcuMTY3OTY5IDE2LTE2IDE2em0wIDAiIGZpbGw9IiNmZmZmZmYiIGRhdGEtb3JpZ2luYWw9IiMwMDAwMDAiIHN0eWxlPSIiIGNsYXNzPSIiPjwvcGF0aD48L2c+PC9zdmc+" />
+              </div> -->
+              <div fxLayout="row"
+              fxLayoutAlign="space-between center"
+              fxLayoutGap="5%"
+              fxFill
+              style="margin-right: 2em;">
+                      <app-duo-info style="color: white; " *ngFor="let item of staticOneData; let f = first"
+                          [firstLine]="((name | async) && f) || !f ? '\<div>'+item.firstLine  + '&nbsp;\</div> ' + (f ? '\<div>'+ (name | async)+ '\</div> ': (time|async) ): ''"
+                      >
+                      </app-duo-info>
+                      <img
+                      [routerLink]="['/']"
+                      class="clickable logoImg"
+                      src="assets/images/apitap-cart-header.png"
+                      alt="" />
+                  <ng-container *ngIf="(name | async) " >
+                      <div class="m-demi5-r white"
+                          [routerLink]="['/login']"
+                          fxLayout="column"
+                          class="clickable"
+                          (click)="logOut()"
+                          fxLayoutAlign="center end">
+                          <mat-icon class="white" >exit_to_app</mat-icon>
+                      </div>
+                  </ng-container>
+              </div>
+          </div>
+      </nav>
+    </ng-template>
+</div>
+<app-header-buttons *ngIf="(isWaiter |async) && !notfound" ></app-header-buttons>
+<ng-container *ngIf="path" >
+    <app-search-section  *ngIf="(isWaiter |async)"></app-search-section>
+</ng-container>
+
+
+

@@ -1,0 +1,63 @@
+<mat-list-item style="min-height: 5em; height: auto; border-bottom: 1px solid lightgrey;" >
+  <div fxLayout="row" fxLayout.xs="column" class="w-100">
+    <div fxLayout="row" fxLayoutAlign="streach center" style="margin-right: 5px;" fxFlex="80">
+      <app-pillbutton
+      [item]="buttons[1]"
+      [payload]="item.order_detail_id" ></app-pillbutton>
+      <!-- <label>{{(i+1)}}</label>&nbsp;
+      <mat-checkbox  ></mat-checkbox> -->
+      <img [src]="(imageUrl | async)+item.imageName" style="width:6em; margin: 0 .5em; height: max-content;"
+      alt="">&nbsp;
+
+      <div >
+        <div class="titleItems">
+            <span>{{item.title}}</span>
+        </div>
+
+        <app-option-list [options]="item.options_list" [item]="item" [classes]="'none'" [fx]="'row'" [fxs]="'column'" [fxsm]="'row'" [align]="'start'"  ></app-option-list>
+      </div>
+    </div>
+
+    <div fxLayout="column" fxFlex="100" class="w-100">
+      <div fxLayout="row" fxLayout.xs="column" class="rightContentItem" fxFlex="100" class="w-100">
+          <div fxLayout="row" fxFlex="100" fxLayoutAlign="space-between center">
+              <div>
+                  <span >Qty.&nbsp;</span>
+                  <br>
+                  <input type="number" style="width:30px;" min="1" #qty
+                      [disabled]="item.statusDetailIsDelivered"
+                      [value]="!!item.product_qty?item.product_qty: ''"
+                      (change)="insertOnItem('product_qty',qty.value)">
+              </div>
+
+              <div>
+                  <span style="font-weight: bold;">Price: </span>
+                  <br>
+                  <span>${{adjustPrice(item.sale_price)}}</span>
+              </div>
+              <div>
+                  <span style="font-weight: bold;">Subtotal: </span>
+                  <br>
+                  <span>${{adjustPrice(item.totalPerItem)}}</span>
+              </div>
+              <ng-container *ngIf="item.statusDetailIsDelivered; else elseTemplate">
+                  <span style="font-weight: bold; color: red">Delivered</span>
+              </ng-container>
+              <ng-template #elseTemplate>
+                  <app-pillbutton [payload]="adjustItem(item)"
+                  [item]="buttons[2]"
+                  ></app-pillbutton>
+              </ng-template>
+          </div>
+        </div>
+
+        <div fxLayout="row" fxLayout.xs="column" class="rightContentItem" fxFlex="100" class="w-100">
+          <textarea #special
+                style=" min-height: 52px; width: 100%; margin-top:5px;"
+                [disabled]="item.statusDetailIsDelivered"
+                [value]="!!item.product_instructions ? item.product_instructions : ''"
+                (change)="insertOnItem('product_instructions',special.value)"></textarea>
+        </div>
+    </div>
+  </div>
+</mat-list-item>

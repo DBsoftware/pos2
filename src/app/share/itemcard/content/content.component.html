@@ -1,0 +1,21 @@
+<div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4%" fxFLex class="container" >
+    <div fxLayout="column" *ngIf="!!(imageUrl |async)" fxLayoutAlign="center start"  >
+            <img [lazyLoad]="imageUrl |async"   />
+            <!-- <div class="swiper-lazy-preloader"></div> -->
+        <div class="available" >
+            <app-product-available 
+            [product]="product" >
+        </app-product-available>
+        </div>
+    </div>
+    <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="5px"  class="mxH"  >
+        <div fxLayout="row" fxLayoutAlign="start start"  >
+            <a  class="title txt-left p-name" *ngIf="!moduleTypeId || (!!moduleTypeId && !moduleTypeId.includes('83010'))"  >
+                {{product.title.length > (!!(imageUrl |async)? 73: 80) ? (( product.title | slice:0:(!!(imageUrl |async)?70:80))+ '...'): product.title }}
+            </a>
+        </div>
+        <p class="txt-left descTextSize"  *ngIf="!!product && !!product.description">
+            {{product.description.length > descWindowSize() ?(( product.description | slice:0:descWindowSize())+ (descWindowSize()==0?'':'...')) : product.description}}
+        </p>
+    </div>
+</div> 

@@ -1,0 +1,11 @@
+<div fxLayout="row" fxFlexAlign="center center" style="margin-top:-10px ;" [fxLayoutAlign]="position" >
+    <mat-icon *ngFor="let item of starRating(product.averageRating)"  class="rating-stars" [class]="classes"
+    [ngClass]="{
+        'yellow': ratingColor(product.averageRating),
+        'none': !ratingColor(product.averageRating)
+    }" >
+    star_rate
+    </mat-icon>
+    <span style="font-size: x-small;" >&nbsp;{{reviewCounter(product.reviewsCnt)}}</span>
+</div>
+

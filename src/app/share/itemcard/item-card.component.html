@@ -1,0 +1,26 @@
+<mat-card
+    (click)="openDialog()"
+    class="theCard"
+    [ngStyle]="{'opacity': product.productStatus == ITEM_STATUS.inactive ? .4: 1, 'background': product.productStatus == ITEM_STATUS.inactive ? 'lightgrey' : 'white'}"
+    style="opacity: 0.7;"
+    [ngClass]="{'Last': isLast}"
+    fxLayout="column"
+    fxLayoutAlign="space-between"
+>
+<mat-icon *ngIf="product.productStatus == ITEM_STATUS.inactive" style="position: absolute; right: 6px; top: 6px;" >
+    disabled_visible
+</mat-icon>
+    <ng-container *ngIf="!isLast;  else elseTemplateimg" >
+        <app-eye-container [product]="product" ></app-eye-container>
+        <app-big-title [product]="product"  ></app-big-title>
+        <app-content [type]="type" [product]="product" ></app-content>
+        <app-footer [product]="product" ></app-footer>
+    </ng-container>
+</mat-card>
+<ng-template #elseTemplateimg>
+    <div fxLayout="row"  fxLayoutAlign="center" class="w-100" >
+        <div class="nav-back" >
+            <mat-icon>keyboard_arrow_right</mat-icon>
+        </div>
+    </div>
+</ng-template>

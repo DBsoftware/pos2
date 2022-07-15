@@ -1,0 +1,46 @@
+<div  fxLayout="row" fxLayoutAlign="space-between center" class="w-100" style="padding: 0 1em;">
+  <form  [formGroup]="_formService.OrderForm" class="w-100">
+    <div  *ngFor="let item of data" fxFlex="30" class="w-100"
+        fxLayout="column" fxLayoutAlign="start start" >
+        <div *ngFor="let e of _formService.returnObjectKeys(item)"
+            class="w-100"
+            fxLayout="column" style="font-size: .8em;"
+            fxLayoutAlign="space-between center">
+            <span class="label bold">{{item[e].label}}</span>
+            <!-- <ng-container *ngIf="!order; else elseTemplate">
+                <span class="label" style="text-align: start;" >{{item[e].placeholder }}</span>
+            </ng-container>
+            <ng-template #elseTemplate> -->
+                <span [ngSwitch]="item[e].type">
+                    <ng-container *ngSwitchCase="'input'">
+                        <input
+                            [readonly]="!isCounter || item[e].readonly"
+                            [type]="!item[e].kind?'text': 'number'"  style="width: 100%;"
+                            [placeholder]="item[e].placeholder"
+                            [formControlName]="item[e].key"
+                            (keyup)="_formService.insertOnSelected(item[e].key)"
+                            >
+                        <mat-error *ngIf="!_formService.OrderForm.get(item[e].key).pristine && _formService.OrderForm.get(item[e].key).errors?.required">{{item[e].label}} is required</mat-error>
+                    </ng-container>
+                    <ng-container *ngSwitchDefault>
+                        <!-- <span class="label" style="text-align: start;" >{{order ? order[item[e].key] : item[e].placeholder }}</span> -->
+                        <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap=".5em" class="w-100">
+                                <select fxFlex="65"
+                                [formControlName]="item[e].key"
+                                (change)="item[e].key.includes('seating_area_id')? _formService.onchange($event.target.value):_formService.insertOnSelected(item[e].key)"  >
+                                <option [disabled]="!isCounter" value="null">Choose an option</option>
+                                <option [disabled]="!isCounter"
+                                    *ngFor="let list of _formService.resolveList(item[e].key) | async"
+                                    [value]="list[item[e].key]">
+                                        {{list[_formService.resolveLabel(item[e].key)]}}
+                                    </option>
+                                </select>
+                        </div>
+                        <mat-error *ngIf="!_formService.OrderForm.get(item[e].key).pristine && _formService.OrderForm.get(item[e].key).errors?.required">{{item[e].label}} is required</mat-error>
+                    </ng-container>
+                </span>
+            <!-- </ng-template> -->
+        </div>
+      </div>
+    </form>
+</div>

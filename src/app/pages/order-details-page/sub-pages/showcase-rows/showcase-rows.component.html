@@ -1,0 +1,11 @@
+<app-section-space [title]="'Showcase'" [height]="'11.5em'"  >
+    <div class="w-100">
+            <app-products-carousel  [type]="'pc'"
+            [products]="showcase | async"></app-products-carousel>
+    </div>
+</app-section-space>
+<app-section-space 
+    [title]="'Menu'" class="w-100" 
+    [additionalClass]="'padding-y scroll-y'"  [height]="'26em'"  >
+        <app-rows-expandables class="w-100" ></app-rows-expandables>
+</app-section-space>

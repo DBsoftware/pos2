@@ -1,0 +1,11 @@
+<h5 mat-dialog-title >
+    <ng-content></ng-content>
+</h5>
+<div class="container"
+    fxLayout="column" 
+    fxLayoutAlign="start start" >
+    <div class="w-100" >
+        <!-- <app-table class="w-100" ></app-table> -->
+        <app-table class="w-100" [displayedColumns]="columnsTableOne" [hasSelection]="'alert'" [dataSourceCarrefour]="ORDERSFOURTH" ></app-table>
+    </div>
+</div>

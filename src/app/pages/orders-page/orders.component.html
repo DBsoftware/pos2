@@ -1,0 +1,3 @@
+<app-section-space [title]="'Current Orders'" class="w-100" [height]="'75vh'" [additionalClass]="'scroll-y'"  >
+    <app-order-card *ngFor="let order of (cards |async)" [order]="order" class="w-100"></app-order-card>
+</app-section-space>

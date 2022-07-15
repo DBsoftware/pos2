@@ -1,0 +1,12 @@
+<mat-list>
+    <mat-list-item (click)="goto(item)"
+    style="border-bottom: 1px solid rgba(104, 103, 103, .5);"
+     *ngFor="let item of (messages | async)" >
+        <!-- <mat-icon mat-list-icon>
+                radio_button_unchecked
+        </mat-icon>         -->
+        <label class="name"  mat-line >{{item.sender_name}}</label>
+        <label class="time" >{{item.date}}</label>
+        <label mat-line >{{item.content}}</label>
+    </mat-list-item>
+</mat-list>

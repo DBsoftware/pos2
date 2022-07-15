@@ -1,0 +1,48 @@
+<br>
+<br>
+<div fxLayout="row" fxLayoutAlign="start start"  style="padding: 0 1em;" >
+  <button mat-button style="background: #013c66; color: #fff;" (click)="back()" >
+    <mat-icon style="font-size: 1.7em; height: fit-content; width: fit-content;">navigate_before</mat-icon>
+    Go Back
+  </button>
+</div>
+<div
+    fxLayout="column"
+    style="padding: 0 1em;"
+    fxLayoutAlign="center center" >
+    <!-- <div class="w-100"
+        fxLayout="row"
+        fxLayoutAlign="start" >
+        <app-table-top-bar-one  class="w-100"></app-table-top-bar-one>
+    </div> -->
+    <!-- <div fxLayout="row" fxLayoutAlign="start center" class="w-100">
+        <h2 class="old-grey-blue" style="margin: 10px 8px;" >Messages</h2>
+    </div> -->
+    <button mat-raised-button
+        fxHide.gt-md
+     (click)="flag = !flag" >
+       {{!flag ? 'Messages List': 'Chat Window'}}
+    </button>
+    <br/>
+    <div
+
+        fxLayout="row" class="w-100"
+        fxLayoutAlign="space-around">
+        <app-table
+        [fxHide.lt-md]="!flag"
+        [expression]=""
+        (out)="flag = !flag"
+        fxFlex.gt-sm="66%"
+        fxFlex.xs="95%"
+        fxFlex.sm="90%"
+        [displayedColumns]="columnsTableOne"
+        [hasSelection]="'alert'"
+        [dataSourceCarrefour]="TableTypeMessages" ></app-table>
+
+        <app-chat
+            [fxHide.lt-md]="flag"
+             fxFlex.gt-sm="30%"
+             fxFlex.xs="95%"
+             fxFlex.sm="80%" ></app-chat>
+    </div>
+</div>

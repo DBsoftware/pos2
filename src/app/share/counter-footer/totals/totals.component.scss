@@ -1,0 +1,15 @@
+.row{
+    div{
+        border: 1px solid grey;
+    }
+    .first{
+        border-right: none;
+        background-color: rgba(204,253,230,.5);
+        padding-left: .5em;
+    }
+    .second { 
+        min-width: 50%; 
+        min-height: 20px;
+        text-align: center;
+    }
+}

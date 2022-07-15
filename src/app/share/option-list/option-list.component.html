@@ -1,0 +1,24 @@
+<ng-container *ngIf="!!options && options.length > 0; else elseTemplate">
+    <mat-list  [class]="classes" [fxLayout]="fx" [fxLayout.xs]="fxs" [fxLayout.sm]="fxsm" [fxLayoutAlign]="align">
+        <mat-list-item
+        *ngFor="let op of options">
+        <div fxLayout="column" fxLayout.sm="column" fxLayout.xs="column">
+            <span class="label-opt" >{{ op.option_name }}</span>
+            <select [disabled]="item.statusDetailIsDelivered"
+            fxFlex="55"  (change)="insertOn(se.value,op.option_name ,op.option_id, op.choices)" #se >
+                <option value="null">Choose an option</option>
+                <option [selected]="!!op.selected && !!op.selected.choice_id && op.selected.choice_id == list.choice_id"
+                 *ngFor="let list of op.choices" [value]="list.choice_id">
+                    {{list.choice_name+': '+list.price}}
+                </option>
+            </select>
+        </div>
+        </mat-list-item>
+    </mat-list>
+</ng-container>
+<ng-template #elseTemplate>
+    <div [fxLayout]="fx" fxLayout="center" [fxLayoutAlign]="align">
+        <h4 class="blueText notify" >There are not options available for this item</h4>
+    </div>
+</ng-template>
+

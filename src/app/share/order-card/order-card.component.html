@@ -1,0 +1,69 @@
+<mat-card class="contentOrder no-shadow soft-border" >
+    <div fxLayout="row" fxLayoutAlign="space-between start" >
+    </div>
+        <div  fxLayout="row" fxLayoutAlign="space-between center" class="orderHeader">
+            <div>
+                <label><b>Order No.: {{order?.order_number}}</b></label><br>
+                <label><b>Server: {{order?.employee_name}}</b></label>
+            </div>
+            <ng-container *ngIf="order.isReady && !order.isDelivered ; else elseTemplate">
+                <div fxLayoutAlign="space-between center" style="padding-right: 3px; color: green;">
+                        <mat-icon style="margin-right: -2px;">priority_high</mat-icon>
+                        <b>
+                            Order Ready
+                        </b>
+                </div>
+            </ng-container>
+            <ng-template #elseTemplate>
+                <div>
+                    <ng-container *ngIf="order.isDelivered; else elseTimer">
+                        <div fxLayoutAlign="space-between center" style="padding-right: 3px; color: green;">
+                            <span>Order Delivered</span>
+                        </div>
+                    </ng-container>
+                    <ng-template #elseTimer>
+                        <label style="color:red">
+                            <app-timer
+                            [order_date]="order.order_date"
+                            [isReady]="order.isReady"
+                            [isClose]="order.isClose"
+                            [isCancel]="order.isCancel"
+                            ></app-timer>
+                        </label>
+                    </ng-template>
+
+                </div>
+            </ng-template>
+
+        </div>
+        <div class="ordersContent">
+            <ng-container *ngFor="let item of order?.items" >
+
+                <div class="orderOptions titleOrder">{{item.title}}&nbsp;({{item.product_qty}})&nbsp;<span style="color: red; font-size: smaller;">{{(item.statusDetailIsDelivered? 'Delivered': '')}}</span></div>
+                <div class="orderOptions" [innerHtml]="item.options"></div>
+                <div class="orderOptions borderLast">{{item.product_instructions}}</div>
+            </ng-container>
+        </div>
+        <div class="totalOrder">
+            <div>TOTAL: {{order?.totalItems}} items</div>
+            <div>{{price}}</div>
+        </div>
+        <div class="orderFooter">
+            <div>
+                <ng-container *ngIf="order?.isDineIn; else elseTable">
+                    <label>{{(areas|async)}} </label>
+                    <label>Table {{order?.location_table_id}} </label>
+                </ng-container>
+                <ng-template #elseTable>
+                    <ng-container *ngIf="order?.isDelivery; else elseDelivery">
+                        <label>Delivery </label> <label>{{order?.delivery_id}}</label>
+                    </ng-container>
+                    <ng-template #elseDelivery>
+                        <label>Pick up </label>
+                    </ng-template>
+                </ng-template>
+
+            </div>
+            <app-fat-buttons [item]="fatButton" [payload]="order" ></app-fat-buttons>
+        </div>
+</mat-card>

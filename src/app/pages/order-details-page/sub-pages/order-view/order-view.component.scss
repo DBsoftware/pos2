@@ -1,0 +1,47 @@
+.mat-list-base{
+    padding: 0;
+}
+::ng-deep .mat-list-item-content{
+    padding: 10px 16px !important;
+}
+
+h4{
+    margin: 0em 1em;
+    border-bottom: 1px solid green;
+}
+
+.rightContentItem{
+  width: 100%;
+  font-size: 13px;
+}
+
+.qtycontentItem{
+  padding-right: 7px;
+}
+
+.titleItems{
+  min-width: 90px;
+  max-width: 246px;
+  overflow-wrap: break-word;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+span{
+  font-size: 13px;
+}
+
+@media (max-width: 425px) {
+  .qtycontentItem{
+    padding-right: 0px;
+  }
+}
+@media (max-width: 320px) {
+  .titleItems{
+    font-size: 13px;
+  }
+
+  .rightContentItem{
+    max-width: 75%;
+  }
+}

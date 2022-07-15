@@ -1,0 +1,34 @@
+<form  [formGroup]="_formService.OrderForm"  >
+    <div mat-dialog-title>
+        <div  fxLayout="row" fxLayoutAlign="space-between start" class="p-r">
+                <h5>
+                    <ng-content></ng-content>
+                </h5>
+        </div>
+    </div>
+    <div fxLayout="column"
+        fxLayoutAlign="start"
+        class="w-100"
+        style="padding: 1em .5em"
+        fxLayoutGap="10px">
+            <div fxLayout="row" *ngFor="let item of form"
+                class="w-100"
+                fxLayoutAlign="space-around center" >
+                    <div
+                        *ngFor="let field of _formService.returnObjectKeys(item)"
+                        fxFlex="32">
+                            <div class="labelWidth">
+                                <span class="label" for="">{{item[field].label}}</span>
+                            </div>
+                            <div class="w-100">
+                                <input type="text" 
+                                [readonly]="(isACostumer | async)"
+                                (keyup)="_formService.insertOnSelectedCustomer(item[field].key)"
+                                [formControlName]="item[field].key" 
+                                style="width: 90%;" />
+                                <mat-error *ngIf="!!_formService.OrderForm.get(item[field].key).touched && _formService.OrderForm.get(item[field].key).errors?.required">{{item[field].label}} is required</mat-error>
+                            </div>
+                    </div>
+            </div>
+    </div>
+    </form>

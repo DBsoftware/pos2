@@ -1,0 +1,19 @@
+<div fxLayout="row" fxLayoutAlign="space-between start"
+fxLayout.xs="column" fxFlex="50 50"
+class="bc-hard-green" style="padding: .5em;">
+    <div fxFlex="25" fxFlex.xs="100" class="w-100"
+    fxLayoutAlign.xs="center center"
+    *ngIf="!!(ordernumber | async)"
+    style="margin-bottom: 5px;" >
+      <span  class="white"  >Order No.:{{ordernumber |async}}</span>
+    </div>
+    <div fxLayout="row" fxLayout.xs="row wrap" [fxLayoutAlign]="'end'" [fxLayoutAlign.xs]="!isDetail ?'space-around': 'end'" class="w-100" >
+      <app-pillbutton
+      class="mrg bigButton"
+      fxFlex="18"
+      fxFlex.xs="23"
+      *ngFor="let item of buttons"
+      [item]="item" >
+      </app-pillbutton>
+  </div>
+</div>

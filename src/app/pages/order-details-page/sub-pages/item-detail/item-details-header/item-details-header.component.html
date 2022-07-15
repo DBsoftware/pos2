@@ -1,0 +1,20 @@
+<div fxLayout="row" 
+fxLayoutAlign="start start" 
+style="padding: .5em;"
+class="bc-ligth-blue p-r" >
+    <div fxFlexOffset="5"><span style="font-weight: 700;" >{{(content|async).category_name}}</span></div>
+    <div fxFlexOffset="32" ><span style="font-weight: 700;" >{{(content|async).title}}</span></div>
+    <button class="p-a" 
+    style="top:-3px; left: -8px" 
+    mat-icon-button 
+    *ngIf="position != 0" 
+    (click)="changePosition(-1)">
+        <mat-icon >navigate_before</mat-icon>
+    </button>
+    <button class="p-a" style="top:-3px; right: 3px" 
+    mat-icon-button  
+    *ngIf="position < total" 
+    (click)="changePosition(1)" >
+        <mat-icon >navigate_next</mat-icon>
+    </button>
+</div>

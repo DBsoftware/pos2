@@ -1,0 +1,39 @@
+<form
+    fxLayout="row"
+    fxLayoutAlign="start center"
+    class="search-form"
+    method="get">
+    <span class="mat-small" style="display: inline-block;" fxFlex="26" fxFlex.xs="46" >
+        {{label}}
+    </span>
+    <div class="p-r" fxFlex>
+        <input
+            type="text"
+            class="w-100 soft-border"
+            autocomplete="off"
+            (keyup.enter)="search()"
+            fxFlex
+            #searchInput
+            (blur)="searchIcon = true"
+            (focus)="searchIcon = false"
+            name="searchInput">
+        <mat-icon
+            *ngIf="searchIcon && searchInput.value.length == 0"
+            (click)="searchIcon = false; searchInput.focus()"
+            class="p-a search-icon">
+                search
+        </mat-icon>
+        <mat-spinner *ngIf="loading" diameter="20" class="p-a loading">
+        </mat-spinner>
+        <mat-icon
+            *ngIf="(searchInput.value.length > 0 || !searchIcon) && !loading"
+            class="clickable p-a clear-icon"
+            style="border-left: none;"
+            (click)="clearSearch()">
+                clear
+        </mat-icon>
+    </div>
+    <!-- <app-pillbutton [item]="{color: 'orange m-demi5-l', label: 'search'}"
+        *ngIf="hasButton">
+    </app-pillbutton> -->
+</form>

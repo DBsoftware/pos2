@@ -1,0 +1,57 @@
+<div fxLayout="column" fxLayoutAlign="space-around center" class="bc-white" style="padding: .5em;" >
+    <div fxLayout="row" fxLayout.xs="column" class="areas" fxLayoutAlign="start center"
+         fxFlex="100" class="w-100"   >
+
+    </div>
+
+    <div fxLayout="row" fxLayout.xs="column" class="h-100 w-100">
+      <div fxLayout="column" fxLayoutAlign="space-between" class="h-100 w-100" fxFlex.xs="100">
+        <div fxFlex="100" fxFlex.xs="100" fxLayout="column"
+              fxLayoutAlign="space-around " class="w-100" *ngFor="let item of items" style="margin-top: 4px;" >
+            <label fxFlex="45" fxFlex.xs="100" style="font-weight: bold;" for="">{{item.label}}</label>
+            <div fxFlex="55" fxFlex.xs="100">
+              <ng-container *ngIf="item.type.includes('input'); else elseTemplate">
+                  <input (keyup)="insertOnSelected($event, item.key)" class="w-100"
+                  [value]="resolveTextAreas(item.label)"
+                  type="text">
+              </ng-container>
+              <ng-template #elseTemplate>
+                  <textarea [value]="resolveTextAreas(item.label)"
+                      (keyup)="insertOnSelected($event, item.key)"
+                      class="w-100" rows="3" style="margin-top: 3px;"></textarea>
+              </ng-template>
+            </div>
+        </div>
+
+        <app-notes fxFlex="100" fxFill [isCounter]="false" ></app-notes>
+      </div>
+
+      <div fxLayout="row wrap"
+          fxFlex="40"
+          fxLayout="column"
+          fxLayoutGap="10px"
+          style="margin-right: 13px; margin-top: 10px;">
+            <div fxLayoutAlign="end start"
+            *ngFor="let item of totalTypes; let l = last; let f = first " >
+              <label style="margin-right: 5px;" [ngClass]="{'bold': l || f}" for="">{{item.label}}</label>
+              <span>${{setData(item.label)}}</span>
+            </div>
+      </div>
+    </div>
+
+    <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center start" fxFlex="100" class="w-100" style="margin-top: 8px;">
+      <app-pillbutton fxFlex="40" fxFlex.xs="50"
+      [item]="{label: 'Print Order', color: 'hard-blue white size10'}"
+      class="printButton" ></app-pillbutton>
+
+      <app-pillbutton fxFlex="40" fxFlex.xs="50"
+      [item]="{ color: 'hard-green white w-100', label: 'Pay for Order'}"
+      class="printButton" ></app-pillbutton>
+      <!-- <textarea [value]="orderSelected.paymentInfo"
+      class="w-100" rows="2
+      "></textarea> -->
+
+
+    </div>
+
+</div>

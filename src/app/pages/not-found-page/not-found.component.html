@@ -1,0 +1,26 @@
+<div fxLayout="row" fxLayoutAlign="center center" style="height: 80vh;">
+    <div fxFlex="80" fxFlex.gt-sm="30" fxFlex.sm="60">
+        <mat-card class="p-0 mat-elevation-z6 box">
+            <div fxLayout="column" fxLayoutAlign="center center" class="primary-background white box-header">
+                <mat-icon class="mat-icon-xlg">error</mat-icon>
+                <br>
+                <h1 class="error">404</h1>
+            </div>
+            <mat-card-content fxLayout="column" fxLayoutAlign="end center" class="box-content">
+                <mat-card fxLayout="column" fxLayoutAlign="center center" class="mat-elevation-z8 box-content-inner">
+                    <h4 class="box-text">Opps, it seems that this page does not exist.</h4> 
+                </mat-card>
+                <div class="box-footer">
+                    <button mat-raised-button color="primary" class="mat-elevation-z8" type="button" (click)="goHome()">
+                        <mat-icon>home</mat-icon>
+                        Go back to the main page
+                    </button>
+                </div>
+            </mat-card-content>
+        </mat-card>          
+    </div>
+</div>
+<div fxLayout="column" fxLayoutAlign="center center" *ngIf="errors | async " >
+    <h2>Errors</h2>
+    <p *ngFor="let item of errors | async">{{item}}</p>
+</div>

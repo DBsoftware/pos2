@@ -1,0 +1,40 @@
+<form style="padding: .5em;" class="bc-hard-ligthgreen" [formGroup]="_formService.OrderForm" >
+    <small  *ngIf="!(orderNumber|async)" >"Please enter the customer information if you have, and the seating area"</small>
+    <div fxLayout="row"  fxLayout.xs="column"
+    class="w-100"
+    *ngFor="let item of form; let i = index; let f = first; let l = last"
+    [fxLayoutAlign]="'space-around center'"
+        >
+        <div *ngFor="let e of _formService.returnObjectKeys(item)"
+            class="w-100"
+            fxLayout="row" [fxLayoutAlign]="(!l)?'start':(!isDeliver? 'end': 'start')"
+            fxLayoutGap="5px" >
+            <label for="" [fxFlex]="f || l?15:30" fxFlex.xs="40" >{{item[e].label}}</label>
+            <span [ngSwitch]="item[e].type" [class]="resolveClass(item[e], l)" >
+                <ng-container *ngSwitchCase="'input'">
+                    <input
+                        [readonly]="item[e].readonly"
+                        [type]="!item[e].kind?'text': 'number'" style="margin-bottom: 5px;" [ngClass]="{ 'w-45': f, 'w-90':!l,'lastDine': (!isDeliver && l), 'lastPD':(isDeliver && l)}"
+                        [formControlName]="item[e].key"
+                        (keyup)="_formService.insertOnSelected(item[e].key)"
+                        >
+                    <mat-error *ngIf="!_formService.OrderForm.get(item[e].key).pristine && _formService.OrderForm.get(item[e].key).errors?.required">{{item[e].label}} is required</mat-error>
+                </ng-container>
+                <ng-container *ngSwitchDefault>
+                    <select [formControlName]="item[e].key" (change)="item[e].key.includes('seating_area_id')? _formService.onchange($event.target.value):_formService.insertOnSelected(item[e].key)"
+                    style="margin-bottom: 5px;" >
+                            <option value="null" disabled>Choose an option</option>
+                                <option
+                                [selected]="_formService.OrderForm.get(item[e].key).value == list[item[e].key]"
+                                    *ngFor="let list of (_formService.resolveList(item[e].key) | async)"
+                                    [value]="list[item[e].key]">
+                                    {{list[_formService.resolveLabel(item[e].key)]}}
+                                </option>
+                            </select>
+                    <mat-error *ngIf="!_formService.OrderForm.get(item[e].key).pristine &&  _formService.OrderForm.get(item[e].key).errors?.required">{{item[e].label}} is required</mat-error>
+                </ng-container>
+            </span>
+
+        </div>
+    </div>
+</form>

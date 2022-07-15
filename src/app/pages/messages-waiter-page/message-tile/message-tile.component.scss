@@ -1,0 +1,39 @@
+
+
+.circle{
+	float: left;
+    height: 15px;
+    width: 15px;
+    background-color: #45c55b;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 12px;
+	margin-top: 2.3px;
+}
+.green{
+    color: green
+}
+.name{
+    line-height: 22px;
+    font-weight: bold !important;	
+}
+
+.time{
+	font-size: 14px;
+    position: absolute;
+    top: 3px;
+    right: 2%;
+    padding: 0 0 5px 5px;
+	font-weight: bold;	
+}
+
+.preview{
+	font-size: 14px;
+    display: inline-block;
+    overflow: hidden;
+    width: -webkit-fill-available;
+    white-space: nowrap;
+    padding-right: 5%;
+    text-overflow: ellipsis;
+}
+

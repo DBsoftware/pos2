@@ -1,0 +1,25 @@
+.bold{
+  ::ng-deep .mat-form-field-label{
+    font-weight: 700!important;
+    color: red;
+  }
+}
+
+.position{
+  left: 25%;
+  top: -2em;
+  opacity: .4;
+}
+
+input, ::ng-deep .mat-select-value-text{
+  font-weight: normal !important;
+}
+
+::ng-deep  .mat-form-field-appearance-fill .mat-form-field-flex {
+  background: white;
+  color: black;
+}
+
+
+
+

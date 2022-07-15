@@ -1,0 +1,29 @@
+<app-flatcard>
+    <div fxLayout="column"
+        fxLayoutAlign="start center">
+            <div
+            class="w-100"
+            fxLayout="row"
+            fxLayoutAlign="center center" >
+            <h2 >
+                There are ({{Upperlabels | async}}) {{flag|async}}
+            </h2>
+            </div>
+        <div class="w-100"
+            fxLayout="row"
+            fxLayoutAlign="space-evenly center" >
+                  <app-pillbutton class="black mrg"
+                   [item]="item" *ngFor="let item of filterButtons" >
+                    </app-pillbutton>
+                <app-search *ngIf="!isCounter" fxFlex="45" [hasButton]="true" ></app-search>
+                <app-pillbutton *ngIf="!!messageButton" [item]="messageButton"></app-pillbutton>
+        </div>
+    </div>
+</app-flatcard>
+<ng-container *ngIf="isCounter; else elseTemplate">
+    <app-new-options-bar></app-new-options-bar>
+</ng-container>
+<ng-template #elseTemplate>
+    <br>
+</ng-template>
+

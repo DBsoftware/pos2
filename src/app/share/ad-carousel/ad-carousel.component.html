@@ -1,0 +1,29 @@
+<div fxLayout="row" fxLayoutAlign="center start">
+    <h5 style="margin: 0;" >titulo</h5>
+</div>
+<div class="main-slider" >
+    <div class="swiper-container h-100" [swiper]="config">
+        <div class="swiper-wrapper h-100">      
+            <div *ngFor="let slide of slides" class="swiper-slide" (click)="goToDetails(slide)" >
+                    <div [attr.data-background]="(IMAGE_URL |async) +  slide.imageName" class="slide-item swiper-lazy">
+                        <div class="swiper-lazy-preloader"></div>
+                        <div fxLayout="column" class="w-100" style="position: relative;" fxLayoutAlign="end center" class="content">
+            </div> 
+          </div>
+          <div fxLayout="row" fxLayoutAlign="center start" style="width: 100%; position: absolute; top: 0; left: 0%; height: 100%; z-index: 9999;">
+            <img height="100%"
+              [src]="(IMAGE_URL |async) +  slide.imageName"
+              />
+          </div>
+        </div>
+      </div>
+      <button mat-mini-fab color="primary" class="swiper-button-prev swipe-arrow"><mat-icon>keyboard_arrow_left</mat-icon></button>
+      <div class="swiper-pagination"></div>
+      <div fxHide fxShow.gt-sm fxLayout="row" class="rowdroppy" fxLayoutAlign="center" >
+        <div class="backdroppy"></div>
+      </div>
+      <button fxHide fxShow.gt-sm mat-mini-fab color="primary" class="swiper-button-next swipe-arrow small-next"><mat-icon>keyboard_arrow_right</mat-icon></button>
+      <button fxHide fxShow.gt-sm mat-mini-fab color="primary" class="swiper-button-prev swipe-arrow small-prev"><mat-icon>keyboard_arrow_left</mat-icon></button>
+      <button mat-mini-fab color="primary" class="swiper-button-next swipe-arrow"><mat-icon>keyboard_arrow_right</mat-icon></button>
+    </div>
+  </div>

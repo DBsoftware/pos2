@@ -1,0 +1,42 @@
+<app-item-details-header></app-item-details-header>
+<div fxLayout="column" fxLayoutAlign="start" class="bc-white" style="padding: 1em;" fxLayoutGap="1em" >
+    <div fxLayout="row" fxLayoutAlign="space-between"   >
+        <div fxLayout="column" fxLayoutAlign="start start" fxFlex="50" >
+        <div fxLayout="column" fxLayoutAlign="center" class="contentImgProduct">
+            <img
+            [src]="(imageUrl | async)+(content|async).imageName" alt="" class="w-100" style="max-width: 130px;">
+            </div>
+            <div fxLayout="row" fxLayoutAlign="center " class="w-100" >
+                <app-rating-stars [product]="(content|async)" ></app-rating-stars>
+            </div>
+        </div>
+        <div fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="gappx">
+            <app-option-list [item]="(content|async)" [options]="(content|async).options_list"  [classes]="'h-170'" ></app-option-list>
+        </div>
+    </div>
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between" fxLayoutGap="gappx">
+        <div *ngFor="let item of areasOne"fxFlex="45" >
+            <label for="">{{item.label}}</label>
+            <div class="w-100" rows="5" [innerHtml]="resolveValue(item.label)" readonly style="font-size: 13px;" ></div>
+        </div>
+    </div>
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between" fxLayoutGap="gappx">
+        <div fxFlex="45" >
+            <label for="">{{areaTwo.label}}</label>
+            <textarea [value]="resolveValue(areaTwo.label)" (keyup)="insertOn('product_instructions', ins.value)" #ins class="w-100" rows="2" ></textarea>
+        </div>
+        <div fxFlex="50" fxLayout="column" fxLayoutAlign="center">
+            <app-item-details-footer></app-item-details-footer>
+        </div>
+    </div>
+</div>
+<ng-container *ngIf="(row |async).PC.length > 0; else elseRelated">
+    <div mat-dialog-actions  >
+        <app-expansion [items]="(row |async)" class="h-100 w-100"></app-expansion>
+    </div>
+    </ng-container>
+    <ng-template #elseRelated>
+        <br>
+    </ng-template>
+
+

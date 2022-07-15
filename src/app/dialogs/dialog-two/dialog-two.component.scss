@@ -1,0 +1,19 @@
+.mat-dialog-title { 
+    text-align: left;
+    background-color: green;
+    color: white;
+    margin: 0;
+    font-weight: 700;
+    padding: 0 1em;
+}
+
+.container{
+    height: 150px; 
+    overflow-y: scroll; 
+    overflow-x: hidden; 
+    margin: 1em; 
+}
+
+::ng-deep.mat-dialog-container{
+    background-color: white !important;
+    }

@@ -1,0 +1,23 @@
+    <div fxLayout="row" fxLayoutAlign="space-around start" class="w-100" style="margin: 1em 0;">
+        <div style="font-weight: 700;"  fxLayout="row" fxLayoutAlign="center center" >
+            <label for="" style="margin-right: 5px;">Qty.</label>
+            <input type="number" fxFlex="25"  min="1"
+            [value]="!!(content | async).product_qty?(content | async).product_qty: '1'"
+            (keyup)="insertOn('product_qty',qty.value)" (change)="insertOn('product_qty',qty.value)" #qty >
+        </div>
+        <div style="font-weight: 700;" >${{adjustPrice()}}</div>
+    </div>
+    <ng-container *ngIf="(content | async).productStatus != ITEM_STATUS.inactive; else elseTemplate">
+        <div fxLayout="row" fxLayoutAlign="end" style="margin: 1em 0;" fxLayoutGap="1em" >
+            <app-pillbutton
+            *ngFor="let item of buttons"
+            [item]="item" >
+            </app-pillbutton>
+        </div>
+    </ng-container>
+    <ng-template #elseTemplate>
+        <div fxLayout="row" fxLayoutAlign="end" >
+            <h3 class="blueText" >This item is not available</h3>
+        </div>
+    </ng-template>
+

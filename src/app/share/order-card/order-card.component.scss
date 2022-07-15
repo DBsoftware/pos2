@@ -1,0 +1,110 @@
+
+/* ----- CURRENT ORDER ----- */
+
+.containerOrder{
+	padding: 0 8px;
+}
+
+.scrollOrder{
+	height: calc(68vh - 200px);
+	overflow-y: auto;
+}
+
+.contentOrder{
+	border:1px solid #000;
+	margin-top: 6px;
+	background-color: #fff;
+	font-size: 14px;
+}
+
+.orderHeader{
+	padding: 0 2px;
+	height: 29px;
+	font-size: 13px;
+}
+
+.orderText{
+	resize: none;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	float: left;
+	width: 96%;
+	height: 100px;
+	margin: 5px 0 4px 10px;
+}
+
+.orderFooter{
+	justify-content: space-between;
+	display: flex;
+	align-items: center;
+	height: 29px;
+	padding: 0 8px;
+	margin-bottom: 4px;
+	clear: both;
+	font-size: 13px;
+}
+
+.btnOrderRight{
+	background: #ff9100;
+	color: #fff;
+	max-width: 91px;
+	width: 82px;
+	height: 27px;
+}
+
+.ordersContent{
+	position:relative;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	/*column-gap: 6px;*/
+	row-gap: 8px;
+  margin: 8px 0px;
+
+}
+
+.orderOptions{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+  padding-left: 3px;
+  border-bottom: 1px solid #c5c5c5 ;
+  min-height: 24px;
+}
+
+.titleOrder{
+	font-weight: bold;
+}
+
+.totalOrder{
+	display: flex;
+	justify-content: space-evenly;
+	font-weight: bold;
+	margin: 6px 0px;
+}
+
+.scroll-y{
+    overflow-y: scroll;
+}
+
+@media only screen and (max-width: 556px) {
+  .ordersContent{
+    grid-template-columns: 1fr ;
+    /*column-gap: 6px;*/
+    row-gap: 8px;
+    margin: 8px 0px;
+
+  }
+
+  .orderOptions{
+    border: none;
+  }
+
+  .borderLast{
+    border-bottom: 1px solid #c5c5c5 !important;
+  }
+}
+
+

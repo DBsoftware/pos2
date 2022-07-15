@@ -1,0 +1,38 @@
+
+p{
+    font-size: .9em;
+    line-height: 1.33em;
+}
+
+
+.h12em{
+    min-height: 12em;
+}
+
+.paragraph{
+  max-height: 60px;
+  min-height: 35px;
+  overflow-y: auto;
+  border: 1px solid transparent;
+  padding: 5px;
+}
+
+.maxHeight{
+  max-height: 150px;
+}
+
+.imgItemDlg{
+  max-width: 260px;
+  max-height: 150px;
+  margin: 0 auto;
+
+}
+
+@media (max-width: 1024px) {
+  .imgItemDlg{
+    margin: inherit;
+    width: -webkit-fill-available;
+  }
+}
+
+

@@ -1,0 +1,88 @@
+.selectti{
+  max-width: 56%;
+  width: 100%;
+}
+
+.inputti{
+  max-width: 31.3%;
+  width: 100%;
+}
+
+.inputti2{
+  max-width: 62.5%;
+  width: 100%;
+}
+.inputti3{
+  max-width: 34.5%;
+  width: 100%;
+  @media (max-width: 425px) {
+    max-width: 62.5%;
+  }
+}
+
+.w-45{
+  width: 45% !important;
+}
+.w-90{
+  width: 90% !important;
+}
+
+.lastDine{
+  width: 82% !important;
+  @media (max-width: 425px) {
+    width: 90% !important;
+  }
+}
+.lastPD{
+  width: 45% !important;
+  @media (max-width: 425px) {
+    width: 90% !important;
+  }
+}
+
+
+label{
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.selectTypeOrder{
+  width: 28%;
+}
+
+@media (max-width: 1440px) {
+  .selectti{
+    max-width: 56%;
+  }
+}
+
+@media (max-width: 768px) {
+  .selectti{
+    max-width: 56%;
+  }
+}
+
+@media (max-width: 599px) {
+  .selectti{
+    max-width: 52.8%;
+  }
+
+  .inputti{
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .selectTypeOrder{
+    width: 52.5%;
+  }
+}
+
+@media (max-width: 425px) {
+  .selectti{
+    max-width: 52.5%;
+  }
+
+  .inputti{
+    max-width: 58.3%;
+  }
+}

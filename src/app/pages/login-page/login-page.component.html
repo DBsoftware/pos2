@@ -1,0 +1,52 @@
+<div fxLayout="row" 
+    fxLayoutAlign="center start" 
+    class="containerHeigth" >
+    <mat-card fxLayout="row wrap" fxLayoutAlign="center" fxFlex="100" fxFlex.gt-sm="75" fxFlex.gt-md="75">
+        <!-- <div fxLayout="row" *ngIf="continueAsGuestAvailable" fxLayoutAlign="center" class="w-100" style="margin: 2em 0;">
+            <button mat-button [routerLink]="['/']"  color="primary" (click)="getGuestinfo()" class="mat-elevation-z2">Continue as a guest</button>
+        </div> -->
+            <div fxFlex="100"  class="p-2">
+                <h2 class="text-muted text-center">Sign In</h2>
+                <form [formGroup]="loginForm" 
+                (ngSubmit)="onLoginFormSubmit(loginForm.value)">
+                    <mat-form-field class="w-100 mt-2">
+                        <input matInput placeholder="Email" formControlName="email" required>
+                        <mat-error *ngIf="loginForm.get('email').errors?.required">Email is required</mat-error>
+                        <mat-error *ngIf="loginForm.get('email').hasError('invalidEmail')">Invalid email address</mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="w-100 mt-1">
+                        <input matInput placeholder="Password" formControlName="password" required type="password">
+                        <mat-error *ngIf="loginForm.get('password').errors?.required">Password is required</mat-error>
+                        <mat-error *ngIf="loginForm.get('password').hasError('minlength')">Password isn't long enough, minimum of 6 characters</mat-error>
+                    </mat-form-field> 
+                    <div class="text-center mt-2"  fxLayout="column" fxLayoutAlign="start">
+                        <!-- <div fxLayout="row wrap" fxLayoutAlign="space-between start" >
+                            <button type="button" (click)="goTo('registration')" mat-button color="primary" class="mat-elevation-z0" >
+                                <span fxHide.lt-sm >Don't have an account?</span> Sign up now!
+                            </button>
+                            <button type="button" (click)="goTo('forgot')" mat-button color="primary" class="mat-elevation-z0" >
+                                Forgot password?
+                            </button>
+                        </div> -->
+                        <!-- <div fxLayout="row" fxLayoutAlign="end start" >
+                            <button type="button" (click)="in = !in" mat-button color="primary" class="mat-elevation-z0" >
+                                Stay logged in 
+                                <ng-container *ngIf="in; else elseTemplate">
+                                    <mat-icon >check_box</mat-icon>
+                                </ng-container>
+                                <ng-template #elseTemplate>
+                                    <mat-icon>check_box_outline_blank</mat-icon>
+                                </ng-template>
+                                
+                            </button>
+                        </div> -->
+                    </div> 
+                    <div class="text-center mt-2">
+                        <button mat-fab color="primary" class="mat-elevation-z6" >
+                            <mat-icon>exit_to_app</mat-icon>
+                        </button>
+                    </div> 
+                </form>
+            </div>
+    </mat-card>
+</div>

@@ -1,0 +1,36 @@
+<div fxLayout="row"
+fxLayoutAlign="space-between center"
+class="w-100 mb-5">
+    <div fxLayout="row"
+        fxFlex="60"
+        fxLayoutAlign="end center" >
+            <h2 class="red" style="margin: 0;"  >
+                <ng-container *ngIf="!!(orderSelected|async) && !!(orderSelected|async).id; else elseTemplate">
+                    <app-timer
+                    [order_date]="(orderSelected|async).order_date"
+                    [isReady]="(orderSelected|async).isReady"
+                    [isClose]="(orderSelected|async).isClose"
+                    [isCancel]="(orderSelected|async).isCancel"
+                    [label]="'Timer '"
+                     ></app-timer>
+                </ng-container>
+                <ng-template #elseTemplate>
+                    Order Information
+                </ng-template>
+            </h2>
+    </div>
+    <div fxLayout="row"
+        fxflex
+        fxLayoutGap="10px"
+        fxLayoutAlign="end center" >
+        <ng-container *ngIf="!!(orderSelected|async); else elseStatus">
+            <span style="font-weight: 500;" >Status:</span>
+            <span>{{(orderSelected|async).status}}</span>
+        </ng-container>
+        <ng-template #elseStatus>
+            <span>xxxxxxxxx</span>
+        </ng-template>
+    </div>
+</div>
+<app-long-info-list  [longHeaderData]="longHeaderData" [isCounter]="isCounter"  ></app-long-info-list>
+<app-buttons-row [buttonsRow]="buttonsrow" [isCounter]="isCounter" ></app-buttons-row>

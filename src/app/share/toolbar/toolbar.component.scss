@@ -1,0 +1,26 @@
+.logoImg{
+  max-width: 16em;
+  position: absolute;
+  left: 52%;
+  transform: translateX(-49%);
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.position {
+  font-size: medium;
+  text-align: center;
+  line-height: .5em;
+}
+
+@media (max-width: 425px) {
+  .logoImg{
+    max-width: 13em;
+  }
+}
+
+@media (max-width: 375px) {
+  .logoImg{
+    max-width: 11em;
+  }
+}

@@ -1,0 +1,30 @@
+<div fxLayout="row"
+    fxLayoutAlign="end center"
+    class="w-100"
+    fxLayoutGap="10px"
+    style="padding: 0 1em; margin-top: 11px;">
+<div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="5px">
+    <ng-container *ngIf="(content | async).productStatus == ITEM_STATUS.active; else elseTemplate">
+        <app-pillbutton
+        *ngIf="!isUpdate"
+        fxFlex="30"
+        [item]="disable" >
+        </app-pillbutton>
+    </ng-container>
+    <ng-template #elseTemplate>
+        <h3 class="blueText" >This Item is disable at the moment</h3>
+    </ng-template>
+        <h4  >QTY.</h4>
+        <input type="number" fxFlex="20" min="1"
+        (change)="insertOn(qty.value)"
+        [value]="!!(content | async).product_qty?(content | async).product_qty: ''"
+        (keyup)="insertOn(qty.value)" #qty >
+    </div>
+    <app-pillbutton
+    fxFlex="10"
+    (out)="sendClose()"
+    *ngFor="let b of buttons"
+    [payload]="(content | async)"
+    [item]="b" >
+    </app-pillbutton>
+</div>

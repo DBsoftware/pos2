@@ -1,0 +1,79 @@
+<div  mat-dialog-title  fxLayout="row" fxLayoutAlign="center center" >
+    <h2>Take a manual pay</h2>
+</div>
+<div mat-dialog-content fxLayout="column"
+fxLayoutAlign="center center"
+style="padding: .4em;"
+fxLayoutGap=".5em">
+    <div fxLayout="column" fxLayoutAlign="start center" >
+        <h3>How is the customer paying</h3>
+        <select
+        [value]="orderSelected.order_cash_flag" class="w-100"
+        (change)="changesFun(k.value)" #k >
+        <option value="null">Choose an option</option>
+            <!-- <option disabled selected>{{orderSelected.order_cash_flag}}</option> -->
+            <option [selected]="!!orderSelected.order_cash_flag && orderSelected.order_cash_flag.includes('true')" [value]="'true'">Cash</option>
+            <option [selected]="!!orderSelected.order_cash_flag && orderSelected.order_cash_flag.includes('false')" [value]="'false'">Credit Card</option>
+        </select>
+    </div>
+    <br>
+    <h5  align="center" >Tip Calculator</h5>
+    <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10px">
+        <button
+            mat-mini-fab
+            (click)="calculateTip(item)"
+            *ngFor="let item of [5,10,15,20]" >
+                {{item}}%
+            </button>
+    </div>
+    <div fxLayout="column" fxLayoutAlign="center" fxLayoutGap="10px">
+        <div *ngFor="let item of fields"
+        fxLayout="row"
+        style="width: 100%;"
+        fxLayoutAlign="space-between start" >
+            <label for="" >{{item.label}}</label>
+            <ng-container *ngIf="!item.label.includes('Credit card'); else elseType">
+              <input type="number" min="-1"
+              (change)="insertOnSelected($event, item.key)"
+              [readonly]="item.readonly"
+              [value]="!!resolveValue(item.label)?resolveValue(item.label):''" >
+            </ng-container>
+            <ng-template #elseType>
+              <select
+              [value]="orderSelected.order_cash_flag"
+              (change)="insertOnSelected($event, item.key)" >
+              <option value="null">Choose an option</option>
+                  <!-- <option disabled selected>{{orderSelected.order_cash_flag}}</option> -->
+                  <option *ngFor="let item of CardTypesLabels"
+                   [selected]="!!orderSelected.credit_card_type_id && orderSelected.credit_card_type_id.includes(CardTypes[item])"
+                   [value]="CardTypes[item]">{{formatLabel(item)}}</option>
+              </select>
+            </ng-template>
+
+        </div>
+    </div>
+</div>
+<div class="w-100 "
+fxLayout="row"
+style="margin: 1em 0;"
+fxLayoutAlign="center">
+    <app-pillbutton
+        *ngFor="let button of buttonsFooter"
+        (out)="close()"
+        fxFlex="30"
+        style="margin-right: 5px;"
+        [item]="button" >
+            {{button.label}}
+    </app-pillbutton>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="center start">
+    <app-pillbutton
+    fxFlex="60"
+    (out)="close()"
+    style="margin-right: 5px;"
+    [item]="qr" >
+        {{qr.label}}
+  </app-pillbutton>
+  </div>
+  <h5  align="center" style="margin-top: 1.5em; color: red;" >Only for registered Apitap users"</h5>
+  <br>

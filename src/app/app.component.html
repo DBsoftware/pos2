@@ -1,0 +1,26 @@
+<app-toolbar></app-toolbar>
+<div class="h-100 scroll-only-y"  style="padding: 0 0 1em 0;">
+    <router-outlet></router-outlet>
+    <ngx-spinner
+        style="z-index: 99999;"
+        bdColor = "rgba(0, 0, 0, 0.8)"
+        [name]="generalSpinner"
+        bdColor="rgba(255,255,255,1)"
+        fullScreen="true"
+        size="medium"
+        color= "rgba(3, 109, 187,.5)"
+        type="square-jelly-box"
+        >
+        <img src="../../assets/images/apitap-cart-header.png"  class='logo-spinner'  alt="" >
+    </ngx-spinner>
+    <ngx-spinner
+        class="spinner-gallery"
+        style="z-index: 99999;"
+        [name]="requestSpinner"
+        bdColor="rgba(0,0,0,0.2)"
+        fullScreen="true"
+        size="large" color= "rgba(3, 109, 187,.5)"
+        type="square-jelly-box"
+    >
+    </ngx-spinner>
+</div>

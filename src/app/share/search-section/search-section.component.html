@@ -1,0 +1,26 @@
+<div fxLayout="row" fxLayoutAlign="space-around"  class="searchSection" >
+    <button mat-icon-button (click)="location.back()" >
+        <mat-icon class="white"  >
+                arrow_back
+        </mat-icon>
+    </button>
+    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="5px" fxFlex="100"  >
+        <mat-icon class="white" (click)="searchIcon = false; searchInput.focus()"  >search</mat-icon>
+        <input class="searchInput" #searchInput placeholder="Search Current Orders" fxFlex="55"/>
+        <!-- <app-fat-buttons [item]="fatOne" [payload]="searchInput.value" ></app-fat-buttons> -->
+        <mat-spinner *ngIf="loading" diameter="20" class="p-a clear-icon">
+        </mat-spinner>
+        <mat-icon
+            *ngIf="(searchInput.value.length > 0 || !searchIcon) && !loading"
+            class="clickable p-a clear-icon"
+            style="border-left: none;"
+            (click)="clearSearch()">
+                clear
+        </mat-icon>
+    </div>
+    <button mat-icon-button (click)="location.forward()" >
+        <mat-icon class="white"  >
+                arrow_forward
+        </mat-icon>
+    </button>
+</div>

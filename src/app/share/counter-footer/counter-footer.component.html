@@ -1,0 +1,6 @@
+<div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start start" fxLayoutGap="20px" >
+    <app-delivery-instructions fxFlex="30" fxFlex.xs="100" fxFill [isCounter]="isCounter" >
+    </app-delivery-instructions>
+    <app-notes  fxFlex="30" fxFill [isCounter]="isCounter" ></app-notes>
+    <app-totals fxFlex="30" fxFill *ngIf="isCounter" ></app-totals>
+</div>

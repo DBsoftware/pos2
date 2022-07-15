@@ -1,0 +1,33 @@
+<div
+    fxLayout="column"
+    fxLayoutAlign="start start" style="margin-top: 5px;">
+    <span class="bold">Staff Note</span>
+    <textarea (keyup)="insertOnSelected(staff.value)" #staff
+    [rows]="4"  style="width: 100%;" class="mb-0" 
+    [value]="!!orderSelected && !!orderSelected.order_note ? adjust(orderSelected.order_note) : ''" ></textarea>
+    <div fxLayout="row"
+    class="w-100"
+    fxLayoutAlign="end start"
+    fxLayoutGap="0px" style="margin-top: 5px;" >
+        <!-- <input type="text" class="w-100" fxFlex="70" style="height: 30px; border: 1px solid rgb(143 143 143);"> -->
+        <div fxFlex style="margin-top: 3px;">
+            <app-pillbutton
+            [item]="{color: 'hard-orange white add-note', label: 'ADD NOTE'}" >
+            </app-pillbutton>
+        </div>
+
+    </div>
+    <div class="w-100 "
+    style="margin-top: .5em;"
+    fxLayout="row"
+    fxLayoutGap="20px"
+    *ngIf="isCounter"
+    fxLayoutAlign="end center">
+        <app-pillbutton
+            *ngFor="let button of buttonsFooter"
+            fxFlex="100"
+            [item]="button" >
+                {{button.label}}
+        </app-pillbutton>
+    </div>
+</div>

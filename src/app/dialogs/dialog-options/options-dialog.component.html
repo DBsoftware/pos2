@@ -1,0 +1,13 @@
+<app-option-list [options]="(content|async).options_list" [item]="(content|async)"></app-option-list>
+<div class="w-100 "
+fxLayout="row"
+style="margin: 1em 0;"
+fxLayoutAlign="space-around">
+    <app-pillbutton
+        *ngFor="let button of buttonsFooter"
+        fxFlex="30" 
+        (out)="close()"
+        [item]="button" >
+            {{button.label}}
+    </app-pillbutton>
+</div>

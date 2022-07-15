@@ -1,0 +1,75 @@
+
+<div id="print-section" style="overflow-y: auto; max-height: 400px;">
+    <div class="POS" *ngFor="let item of (orderSelected | async).doneItems; let i = index">
+
+        <div class="mid">
+        <div class="info">
+            <h2 align="center" >{{(user | async)?.companyName}}</h2>
+            <p fxLayout="column" fxLayoutAlign="start start" >
+                <span >Print Date :  {{date}}</span>
+                <span >Date of order:  {{(orderSelected | async)?.order_date}}</span>
+                <ng-container *ngIf="!!(orderSelected | async).employee_name && (orderSelected | async)?.employee_name.length > 0 ">
+                    <span >Server: {{(orderSelected | async).employee_name}}</span>
+                </ng-container>
+                <!-- <ng-container *ngIf="!!(orderSelected | async).fullName && (orderSelected | async)?.fullName.length > 0 && (orderSelected | async).isPickUp ">
+                    <span  >Name: {{(orderSelected | async)?.fullName}}</span>
+                </ng-container> -->
+                <ng-container *ngIf="!!(orderSelected | async).orderType && (orderSelected | async)?.orderType.length > 0" >
+                    <span >Type of order: {{(orderSelected | async)?.orderType}}</span>
+                </ng-container>
+                <ng-container *ngIf="!!(orderSelected | async).seating_area_id && (orderSelected | async)?.seating_area_id.length > 0" >
+                    <span >Area: {{(areas | async)}} - Table: {{(orderSelected | async)?.location_table_id}}</span>
+                </ng-container>
+                <ng-container *ngIf="!!(orderSelected | async).customer_phone_number && (orderSelected | async)?.customer_phone_number.length > 0 && !(orderSelected | async)?.isDineIn" >
+                    <span >Phone: {{(orderSelected | async)?.customer_phone_number}}</span>
+                </ng-container>
+                <ng-container *ngIf="!!(orderSelected | async).fullAddress && (orderSelected | async)?.fullAddress.length > 0 && (orderSelected | async)?.isDelivery "  >
+                    <span [innerHtml]="(orderSelected | async)?.fullAddress " ></span>
+                </ng-container>
+            </p>
+          </div>
+        </div><!--End Invoice Mid-->
+
+        <div class="bot">
+
+                        <div class="table">
+                            <table>
+                                <tr class="tabletitle">
+                                    <td class="item"><h2>Item</h2></td>
+                                    <td class="hours"><h2>Qty</h2></td>
+                                    <td class="Rate"><h2>Category</h2></td>
+                                </tr>
+
+                                <tr class="service">
+                                    <td class="tableitem">
+                                        <div class="itemtext">
+                                            <span>{{item.title}}</span><br>
+                                            <div style="margin-left: 4em; font-size: .9em;" [innerHtml]="item?.optionsReceipt" >
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="tableitem"><p class="itemtext">{{item.product_qty}}</p></td>
+                                    <td class="tableitem"><p class="itemtext">{{item.category_name}}</p></td>
+                                </tr>
+
+
+                            </table>
+                        </div><!--End Table-->
+
+                        <div class="legalcopy">
+                            <p class="legal" align="center"><strong>item {{item.position}} of {{(orderSelected | async)?.itemsLength}}</strong> 
+                                 <!-- Payment is expected within 31 days; please process this invoice within that time. There will be a 5% interest charge per month on late invoices.  -->
+                            </p>
+                        </div>
+
+                    </div><!--End InvoiceBot-->
+    </div><!--End Invoice-->
+</div>
+<button
+    class="pill-buttons w-100 p-r bc-hard-green white w-100"
+    [useExistingCss]="true"
+    printSectionId="print-section" ngxPrint
+    fxLayout="row" fxLayoutAlign="center center"
+    mat-button>
+    Print
+</button>

@@ -1,0 +1,32 @@
+.mat-dialog-title {
+    background-color: rgb(33, 79, 206);
+    margin: 0;
+    h2{
+        text-align: center;
+        color: white;
+        font-weight: 800;
+        margin: 0;
+    }
+}
+
+h3{
+    margin: 0;
+    font-weight: 800;
+}
+
+h5{
+    margin: 0 !important;
+    font-weight: 800;
+
+}
+label{
+    font-size: .95em;
+    font-weight: 700;
+}
+input, select{
+    width: 50%;
+}
+
+::ng-deep.mat-dialog-container{
+    background-color: white !important;
+  }

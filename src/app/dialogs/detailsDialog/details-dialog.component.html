@@ -1,0 +1,27 @@
+<div mat-dialog-title>
+    <app-details-header></app-details-header>
+</div>
+<div mat-dialog-content fxLayout="column" fxLayoutAlign="space-around center">
+    <app-details-content class="w-100"></app-details-content>
+    <app-details-dialog-footer  
+        (closeEvent)="close()" class="w-100">
+    </app-details-dialog-footer>
+    <!-- <ng-template #elseTemplate>
+        <div fxLayout="row" fxLayoutAlign="end start" class="w-100">
+            <app-pillbutton
+            fxFlex="30" 
+            (out)="close()"
+            [item]="button" >
+            </app-pillbutton>
+        </div>
+    </ng-template> -->
+</div>
+<ng-container *ngIf="(row |async).PC.length > 0; else elseRelated">
+    <div mat-dialog-actions  >
+        <app-expansion [items]="(row |async)" class="h-100 w-100"></app-expansion>
+    </div>
+    </ng-container>
+    <ng-template #elseRelated>
+        <br>
+    </ng-template>
+    

@@ -1,0 +1,23 @@
+<h5 mat-dialog-title >{{ (data| async).title}}</h5>
+
+<div [class]="'whole-padding'"
+fxLayout="column" 
+fxLayoutAlign="center" >
+    <div fxLayout="row" fxLayoutAlign="center start" class="w-100" >
+        <div class="w-100 red" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="5px">
+            <h4 >{{ (data| async).subtitle}}</h4>
+            <div fxLayout="row" fxLayoutAlign="center center"
+            fxLayoutGap="20px"
+            class="w-100" >
+            <app-pillbutton
+            fxFlex="30"
+            (out)="close()"
+            [payload]="(data|async).remove_id"
+            *ngFor="let item of actionButtons"
+            [item]="item" >
+            </app-pillbutton>
+            </div>
+        </div>
+    </div>
+</div>
+

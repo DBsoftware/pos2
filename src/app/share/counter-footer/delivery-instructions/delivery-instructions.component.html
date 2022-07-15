@@ -1,0 +1,18 @@
+
+<div
+    fxLayout="column"
+    fxLayoutAlign="start start"
+    style="margin-top: 5px;">
+    <span class="bold">Order/Delivery Instructions </span>
+    <textarea [rows]="6" class="w-100 mb-5" (keyup)="insertOnSelected(ins.value)" #ins  [value]="!!orderSelected && !!orderSelected.order_instructions ? orderSelected.order_instructions : ''" ></textarea>
+    <div class="w-100"
+    fxLayoutGap="10px"
+    fxLayout="row" *ngIf="isCounter"
+    fxLayoutAlign="center center">
+        <app-pillbutton
+        fxFlex="75"
+        *ngFor="let item of buttonsOriginal"
+        [item]="item" >
+        </app-pillbutton>    
+    </div>
+</div>

@@ -1,0 +1,19 @@
+@import '../dialog-two.component.scss';
+
+.label{
+    font-size: .75em;
+    font-weight: 500;
+}
+input{
+    width: 53%;
+}
+
+h5{
+    margin: 0!important;
+    font-weight: 700;
+}
+.elements{
+    margin: 0; 
+    padding: 0; 
+    height: fit-content
+}

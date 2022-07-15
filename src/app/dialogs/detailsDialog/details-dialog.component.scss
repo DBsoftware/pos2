@@ -1,0 +1,16 @@
+
+.mat-dialog-title { 
+    margin: 0;
+}
+.mat-dialog-content{
+    margin: 0;
+    height: 60%;
+}
+.mat-dialog-actions{
+    margin: 0;
+    height: 30%;
+}
+
+::ng-deep.mat-dialog-container{
+    background-color: white !important;
+}

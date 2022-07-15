@@ -1,0 +1,36 @@
+<div mat-dialog-title 
+    fxLayout="row" 
+    fxLayoutAlign="space-between start" 
+    >
+    <h4 >
+        <ng-content></ng-content>
+    </h4>
+    <ng-container *ngIf="!(isACostumer|async); else elseClear">
+        <app-pillbutton 
+        style="margin-top: .2em;"
+        class="textBtn"
+            [item]="button" >
+        </app-pillbutton>
+    </ng-container>
+    <ng-template #elseClear>
+        <app-pillbutton 
+        style="margin-top: .2em;"
+        class="textBtn"
+            [item]="buttonClear" >
+        </app-pillbutton>
+    </ng-template>
+    
+    <div
+    fxFlex="60"
+    style="padding: .1em .5em;border-radius: 4px"
+    class="no-shadow solid-white-bc-green black" >
+        <app-search [label]="'Search Customers'" [kind]="true" ></app-search>
+    </div>
+</div>
+<div 
+    class="container"
+    fxLayout="column" 
+    fxLayoutAlign="start start" >
+    <app-table class="w-100" [displayedColumns]="columnsTableOne" 
+    [hasSelection]="'alert'" [dataSourceCarrefour]="TableTypeCustomers" ></app-table>
+</div>

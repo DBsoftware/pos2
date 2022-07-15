@@ -1,0 +1,20 @@
+<br>
+<div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="space-around">
+  <div fxFlex="48" class="h-100">
+      <!-- <app-table-top-bar-one></app-table-top-bar-one> -->
+      <mat-card style="padding: .5em;" >
+        <div fxLayout="row" fxLayoutAlign="center start" fxLayoutGap="gappx">
+          <!-- <crm-buttons
+          [payload]="activatedRoute"
+          *ngFor="let item of buttons; let i = index"
+          [buttonsIndex]="item"></crm-buttons> -->
+        </div>
+        <full-calendar deepChangeDetection="true" #calendar [options]="calendarOptions"></full-calendar>
+      </mat-card>
+  </div>
+  <div fxFlex="48" >
+    <restaurant-appointment-form></restaurant-appointment-form>
+  </div>
+</div>
+
+

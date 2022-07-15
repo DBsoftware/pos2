@@ -1,0 +1,37 @@
+<div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start" class="h12em p-r" fxLayoutGap="1.5em">
+    <button class="p-a" style="top:50%; left: -2em; position: absolute !important;" mat-icon-button *ngIf="position != 0" (click)="changePosition(-1)">
+        <mat-icon style="font-size: 3em; height: fit-content; width: fit-content;">navigate_before</mat-icon>
+    </button>
+    <button class="p-a" style="top:50%; right: -1.6em; position: absolute !important;" mat-icon-button  *ngIf="position < total" (click)="changePosition(1)" >
+        <mat-icon style="font-size: 3em; height: fit-content; width: fit-content;">navigate_next</mat-icon>
+    </button>
+    <div  class="h-100" fxLayout="column" fxLayoutAlign="space-between stretch" fxLayoutAlign.xs="space-between " fxFlex="33" >
+        <div fxLayout="column" fxLayoutAlign="center center" class="contentImgProduct" >
+        <img
+        [src]="(imageUrl | async)+(content|async).imageName" alt="" class="imgItemDlg">
+        </div>
+        <ng-container *ngIf="!!(orderNumber|async)">
+            <h5 style="margin-bottom: 0; font-weight: 500;">Special Instructions</h5>
+            <textarea  (keyup)="insertOn('product_instructions', ins.value)" #ins
+            rows="4" class="w-100" [value]="!!(content|async).product_instructions ? (content|async).product_instructions : ''" ></textarea>
+        </ng-container>
+    </div>
+    <div class="h-100"
+    fxLayout="column"
+    fxLayoutAlign="space-between"
+    fxFlex="63"
+    style="padding: 0 .5em;"
+    fxLayoutGap="5px" >
+        <div>
+            <h5 style="margin-bottom: 0; font-weight: bold;">Descritption</h5>
+            <p class="paragraph"  [innerHtml]="(content|async).description" ></p>
+        </div>
+        <div>
+            <h5 style="margin-bottom: 0; font-weight: bold;">Specs / Condintions</h5>
+            <div class="paragraph" [innerHtml]="(content|async).specs" ></div>
+        </div>
+    </div>
+    <div class="h-100" *ngIf="!!(content|async).options_list && (content|async).options_list.length > 0" fxLayout="column" fxLayoutAlign="space-between" fxFlex="33" >
+        <app-option-list [item]="(content|async)" [options]="(content|async).options_list" ></app-option-list>
+    </div>
+</div>

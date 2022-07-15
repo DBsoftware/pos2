@@ -1,0 +1,13 @@
+<app-table-one>{{'Customer Lookup'}}</app-table-one>
+<app-form >{{'Customer Info'}}</app-form>
+<app-table-two *ngIf="(isACostumer | async)">{{'Customer History'}}</app-table-two>
+<app-customer-notes *ngIf="(isACostumer | async)" (content)="comment = $event" >{{'Customer Notes'}}</app-customer-notes>
+<div fxLayout="row" class="p-1" style="padding-top: 0!important;" fxLayoutAlign="end center" fxLayoutGap="10px">
+    <app-pillbutton
+    fxFlex="20"
+    (out)="dialogRef.close()"
+    [payload]="comment"
+    *ngFor="let item of ((isACostumer|async)? actionButtons: actionButtons.slice(0,1))"
+    [item]="item" >
+    </app-pillbutton>
+</div>

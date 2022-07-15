@@ -1,0 +1,9 @@
+<div class="soft-border bc-white tile" >
+    <h4 class="primary-color"  >Items</h4>
+    <mat-list style="background-color: white; border-bottom: 1px solid;" >
+        <app-item-tile  [item]="item" *ngFor="let item of (items | async); let i=index" ></app-item-tile>
+    </mat-list>
+</div>
+<app-total-section></app-total-section>
+
+

@@ -1,0 +1,25 @@
+<div fxLayout="row" fxLayoutAlign="space-between" >
+    <div fxLayout="row wrap" fxLayoutAlign="start" fxFlex="70" fxFlex.md="60" fxFlex.sm="50" fxFlex.xs="60" fxFlex.lt-xs="50">
+        <app-rating-stars [product]="product" [position]="'start end'"></app-rating-stars>
+    </div>
+        <div fxLayout.gt-xs="row" fxLayout.lt-sm="row wrap" fxLayoutAlign="end end"  fxFlex="40"
+        fxLayoutGap.gt-xs=".7em"
+         class="prices" *ngIf="type === CAROUSEL_TYPE.PRODUCT" >
+            <div *ngIf="!isPriceReview" class="regular-price">
+                <span  >$</span>{{product.sale_price | number : '1.2-2'}}
+            </div>
+            <div *ngIf="isPriceReview" class="old-price text-muted">
+                <span  >$</span>{{product.regularPrice | number : '1.2-2'}}
+            </div>
+            <div *ngIf="isPriceReview" class="new-price" >
+                <span  >$</span>{{product.priceReview | number : '1.2-2'}}
+            </div>
+        </div>
+        <!-- <div fxLayout="row" fxLayoutAlign="end end"  fxFlex="40"
+        fxLayoutGap=".7em"
+         class="prices" *ngIf="type === CAROUSEL_TYPE.ADV" >
+            <div *ngIf="!isLast" class="new-price" style="font-size: .9em;" >
+                {{product.rewardPrice | slice : 4}}
+            </div>
+        </div> -->
+</div> 
